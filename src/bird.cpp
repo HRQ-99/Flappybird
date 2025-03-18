@@ -1,20 +1,26 @@
 #include "bird.h"
+
 #include "godot_cpp/classes/input.hpp"
 
 float Bird::s_gravity_multiplier = 1;
 
-void Bird::_ready() {
+void Bird::_ready()
+{
   m_bird = this;
   m_invincible = false;
   m_speed = 150;
   s_gravity_multiplier = 1;
 }
 
-void Bird::_process(double delta) {
+void Bird::_process(double delta)
+{
   Input *input = Input::get_singleton();
 
-  if (input->is_action_just_pressed("Flap")) {
-  } else if (input->is_action_just_pressed("Dive")) {
+  if (input->is_action_just_pressed("Flap"))
+  {
+  }
+  else if (input->is_action_just_pressed("Dive"))
+  {
   }
 }
 
