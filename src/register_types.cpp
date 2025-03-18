@@ -1,4 +1,7 @@
 #include "register_types.h"
+#include "bird.h"
+#include "godot_cpp/core/class_db.hpp"
+#include "main_game.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -10,6 +13,9 @@ void initialize_module(ModuleInitializationLevel p_level) {
   if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
     return;
   }
+
+  GDREGISTER_RUNTIME_CLASS(MainGame);
+  GDREGISTER_RUNTIME_CLASS(Bird);
 }
 
 void uninitialize_module(ModuleInitializationLevel p_level) {
