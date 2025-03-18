@@ -1,15 +1,17 @@
 #pragma once
 
+#include <godot_cpp/core/class_db.hpp>
+
 #include "godot_cpp/classes/character_body2d.hpp"
 #include "godot_cpp/classes/wrapped.hpp"
-#include <godot_cpp/core/class_db.hpp>
 
 using namespace godot;
 
-class Bird : public CharacterBody2D {
+class Bird : public CharacterBody2D
+{
   GDCLASS(Bird, CharacterBody2D)
 
-public:
+ public:
   virtual void _ready() override;
   virtual void _process(double delta) override;
 
@@ -20,7 +22,7 @@ public:
 
   void increase_bird_movespeed();
 
-private:
+ private:
   Bird *m_bird = this;
   const float m_fallspeed = 150;
   const float m_flyspeed = -1500;
@@ -37,6 +39,6 @@ private:
 
   void save_score();
 
-protected:
+ protected:
   static void _bind_methods();
 };
