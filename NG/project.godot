@@ -10,6 +10,35 @@ config_version=5
 
 [application]
 
-config/name="NG"
+config/name="Flappybird"
+run/main_scene="uid://btwtgatm1f6gs"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
+config/windows_native_icon="res://art/flappybird_icon.ico"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/mode=4
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://nh270lj6oh4m"
+
+[global_group]
+
+Bird=""
+Pipe=""
+
+[gui]
+
+theme/custom="uid://7xvyjg4jos0g"
+theme/custom_font="uid://3hn5srnlyr52"
+
+[layer_names]
+
+2d_physics/layer_1="Bird"
+2d_physics/layer_2="Pipes"
+2d_physics/layer_3="Boundary"
