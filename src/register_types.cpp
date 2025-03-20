@@ -2,11 +2,12 @@
 
 #include <gdextension_interface.h>
 
+#include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
 #include "bird.h"
-#include "godot_cpp/core/class_db.hpp"
+#include "level.h"
 #include "main_game.h"
 
 using namespace godot;
@@ -20,6 +21,7 @@ void initialize_module(ModuleInitializationLevel p_level)
 
   GDREGISTER_RUNTIME_CLASS(MainGame);
   GDREGISTER_RUNTIME_CLASS(Bird);
+  GDREGISTER_RUNTIME_CLASS(Level);
 }
 
 void uninitialize_module(ModuleInitializationLevel p_level)
