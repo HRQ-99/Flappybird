@@ -14,6 +14,7 @@ class Level : public Node2D
 
   virtual void _ready() override;
   virtual void _process(double delta) override;
+  virtual void _input();
 
   void set_game_paused_state(bool game_paused);
   bool get_game_paused_state() const;

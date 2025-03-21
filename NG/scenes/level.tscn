@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwhmyaen74sbb"]
+[gd_scene load_steps=3 format=3 uid="uid://cwhmyaen74sbb"]
 
 [ext_resource type="Script" uid="uid://dvdq02i1dk4rg" path="res://scripts/level.gd" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://bos3yfn3v2b7m" path="res://scenes/pause_screen.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://gjviwon5blic" path="res://scenes/bird.tscn" id="3_w8frs"]
+[ext_resource type="Texture2D" uid="uid://dcsxuu3ni1tr1" path="res://icon.svg" id="4_mx8sn"]
 
 [node name="Level" type="Level"]
+process_mode = 3
 script = ExtResource("1_w7c3h")
+
+[node name="Pause Screen" parent="." instance=ExtResource("2_w7c3h")]
+visible = false
+
+[node name="Bird" parent="." instance=ExtResource("3_w8frs")]
+scale = Vector2(0.15, 0.15)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(274, 271)
+texture = ExtResource("4_mx8sn")
