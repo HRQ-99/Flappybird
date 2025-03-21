@@ -1,10 +1,12 @@
 #include "level.h"
 
+#include <godot_cpp/classes/node2d.hpp>
+#include <godot_cpp/core/memory.hpp>
 #include <godot_cpp/core/print_string.hpp>
+#include <godot_cpp/variant/variant.hpp>
 
-#include "godot_cpp/classes/node2d.hpp"
-#include "godot_cpp/core/memory.hpp"
-#include "godot_cpp/variant/variant.hpp"
+#include "godot_cpp/classes/canvas_layer.hpp"
+#include "godot_cpp/classes/input.hpp"
 
 Level::Level() {}
 
@@ -15,12 +17,12 @@ void Level::_ready()
   m_game_paused = false;
   m_score = 0;
   m_pipes_container = memnew(Node2D);
+  m_pipes_container->set_name("Pipes Container");
+  this->add_child(m_pipes_container);
 
-  print_line(m_pipes_container);
   for (int i = 0; i < max_pipes; i++)
   {
-    Node2D* pipe_pair = make_pipe_pair();
-
+    Node2D* pipe_pair = Object::cast_to<Node2D>(call("make_pipe_pair"));
     if (pipe_pair)
     {
       m_pipes_container->add_child(pipe_pair);
@@ -31,36 +33,21 @@ void Level::_ready()
   }
 }
 
-void Level::_process(double delta)
+void Level::_process(double delta) {}
+
+void Level::_input()
 {
-  // print_line(2);
+  Input* input = Input::get_singleton();
+  if (input->is_action_just_pressed("Escape"))
+  {
+    m_game_paused = !m_game_paused;
+    this->set_game_paused_state(m_game_paused);
+    this->get_node<CanvasLayer>("Pause Screen")->set_visible(!m_game_paused);
+  }
 }
 
 // overridden in gdscript
-Node2D* Level::make_pipe_pair()
-{
-  // Ref<Node> var_value = static_cast<Ref<Node>>(call("make_pipe_pair"));
-  //  Node2D* pipes = cast_to();
-  //
-  return nullptr;
-}
-//{
-// const float minimum_vertical_gap_between_pipes = 20;
-// const float vertical_gap_variance = 10;
-//
-// Ref<PackedScene> top_pipe = ResourceLoader::get_singleton()->load(pipe_scene_path);
-//// Node* tp =
-/// static_cast<Ref<PackedScene>>((ResourceLoader::get_singleton()->load(pipe_scene_path)))->instantiate(); /
-/// Ref<Node2D> tp = static_cast<Ref<Node2D>>( /
-/// static_cast<Ref<PackedScene>>((ResourceLoader::get_singleton()->load(pipe_scene_path)))->instantiate());
-//
-// Ref<StaticBody2D> tps = static_cast<Ref<StaticBody2D>>(tp);
-// tps->set_rotation_degrees(180);
-//// top_pipe.instantiate();
-//
-// Ref<PackedScene> bottom_pipe = ResourceLoader::get_singleton()->load(pipe_scene_path);
-//// StaticBody2D bp = memnew(bottom_pipe)
-//}
+Node2D* Level::make_pipe_pair() { return nullptr; }
 
 void Level::_bind_methods()
 {

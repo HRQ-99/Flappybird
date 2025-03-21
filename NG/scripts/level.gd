@@ -7,7 +7,6 @@ func _physics_process(_delta: float) -> void:
  pass
 
 func make_pipe_pair()->Node2D:
-  printerr("here")
   var top_pipe:=pipe_scene.instantiate() as StaticBody2D
   top_pipe.rotation_degrees=180
   top_pipe.position.y=0
