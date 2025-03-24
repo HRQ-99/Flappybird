@@ -22,7 +22,6 @@ buses/default_bus_layout="uid://b6xfs40ne2l7c"
 
 [debug]
 
-settings/stdout/print_fps=true
 gdscript/warnings/native_method_override=1
 
 [display]
@@ -35,11 +34,6 @@ window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://nh270lj6oh4m"
-
-[global_group]
-
-Bird=""
-Pipe=""
 
 [gui]
 
@@ -79,13 +73,8 @@ Escape={
 2d_physics/layer_1="Bird"
 2d_physics/layer_2="Pipes"
 2d_physics/layer_3="Boundary"
-
-[physics]
-
-2d/run_on_separate_thread=true
-common/physics_ticks_per_second=240
+2d_physics/layer_4="PowerUps"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-anti_aliasing/quality/msaa_2d=3

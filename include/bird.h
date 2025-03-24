@@ -1,10 +1,8 @@
 #pragma once
 
-#include <godot_cpp/classes/character_body2d.hpp>
+#include "godot_cpp/classes/character_body2d.hpp"
 
-using namespace godot;
-
-class Bird : public CharacterBody2D
+class Bird : public godot::CharacterBody2D
 {
   GDCLASS(Bird, CharacterBody2D)
 
@@ -28,6 +26,9 @@ class Bird : public CharacterBody2D
   void set_flyspeed(const float p_flyspeed);
   float get_flyspeed() const;
 
+  void set_speed_multiplier(const float p_speed_multiplier);
+  float get_speed_multiplier() const;
+
   void set_dive_multiplier(const float p_dive_multiplier);
   float get_dive_multiplier() const;
 
@@ -44,10 +45,10 @@ class Bird : public CharacterBody2D
   bool get_pipe_destroyer() const;
 
  private:
-  Bird *m_bird = this;
-  float m_speed = 150;
-  float m_fallspeed = 150;
-  float m_flyspeed = -1500;
+  float m_speed = 80;
+  float m_fallspeed = 60;
+  float m_flyspeed = -300;
+  float m_speed_multiplier = 1;
   float m_dive_multiplier = 5;
   float m_gravity_multiplier = 1;
 

@@ -1,50 +1,46 @@
 #include "bird.h"
 
-#include <godot_cpp/classes/input.hpp>
-#include <godot_cpp/classes/node.hpp>
-#include <godot_cpp/classes/scene_tree.hpp>
-#include <godot_cpp/core/class_db.hpp>
-#include <godot_cpp/core/print_string.hpp>
+#include "godot_cpp/classes/input.hpp"
+
+using namespace godot;
 
 void Bird::_ready()
 {
-  m_bird = this;
   m_invincible = false;
   // make it equal to value from difficulty manager
-  Bird::set_speed(150);
+  // set_speed(150);
   m_gravity_multiplier = 1;
+  m_speed_multiplier = 1;
 }
 
 void Bird::_physics_process(double delta)
 {
   Input *input = Input::get_singleton();
 
+  set_velocity(Vector2(m_speed * m_speed_multiplier, m_fallspeed * m_gravity_multiplier));
+
   if (input->is_action_just_pressed("Flap"))
   {
-    set_velocity(Vector2(m_speed, m_flyspeed));
+    set_velocity(Vector2(m_speed * m_speed_multiplier, m_flyspeed + m_fallspeed));
   }
-  else if (input->is_action_just_pressed("Dive"))
+  else if (input->is_action_pressed("Dive"))
   {
-    set_velocity(Vector2(m_speed, m_fallspeed * m_dive_multiplier));
-  }
-  else
-  {
-    set_velocity(Vector2(m_speed, m_fallspeed * m_gravity_multiplier));
+    set_velocity(Vector2(m_speed * m_speed_multiplier, m_fallspeed * m_dive_multiplier));
   }
 
   move_and_slide();
 
-  int collision_count = m_bird->get_slide_collision_count();
+  int collision_count = get_slide_collision_count();
 
   if (!m_invincible && collision_count > 0)
   {
-    Node *last_collision = cast_to<Node>((m_bird->get_last_slide_collision())->get_collider());
+    Node *last_collision = cast_to<Node>(get_last_slide_collision()->get_collider());
 
     if ((last_collision->get_name()) != (String) "Boundary")
     {
       if (!m_pipe_destroyer_active)
       {
-        m_bird->set_process_mode(PROCESS_MODE_DISABLED);
+        set_process_mode(PROCESS_MODE_DISABLED);
         print_line("GAME OVER");
         save_score();
         // TODO change to end screen
@@ -90,6 +86,10 @@ void Bird::_bind_methods()
   ClassDB::bind_method(D_METHOD("set_flyspeed", "p_flyspeed"), &Bird::set_flyspeed);
   ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "flyspeed"), "set_flyspeed", "get_flyspeed");
 
+  ClassDB::bind_method(D_METHOD("get_speed_multiplier"), &Bird::get_speed_multiplier);
+  ClassDB::bind_method(D_METHOD("set_speed_multiplier", "p_speed_multiplier"), &Bird::set_speed_multiplier);
+  ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "speed multiplier"), "set_speed_multiplier", "get_speed_multiplier");
+
   ClassDB::bind_method(D_METHOD("get_dive_multiplier"), &Bird::get_dive_multiplier);
   ClassDB::bind_method(D_METHOD("set_dive_multiplier", "p_dive_multiplier"), &Bird::set_dive_multiplier);
   ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "dive multiplier"), "set_dive_multiplier", "get_dive_multiplier");
@@ -123,7 +123,10 @@ float Bird::get_flyspeed() const { return m_flyspeed; }
 void Bird::set_dive_multiplier(const float p_dive_multiplier) { m_dive_multiplier = p_dive_multiplier; }
 float Bird::get_dive_multiplier() const { return m_dive_multiplier; }
 
-void Bird::set_gravity_multiplier(const float p_gravity_multiplier) { m_dive_multiplier = p_gravity_multiplier; }
+void Bird::set_speed_multiplier(const float p_speed_multiplier) { m_speed_multiplier = p_speed_multiplier; }
+float Bird::get_speed_multiplier() const { return m_speed_multiplier; }
+
+void Bird::set_gravity_multiplier(const float p_gravity_multiplier) { m_gravity_multiplier = p_gravity_multiplier; }
 float Bird::get_gravity_multiplier() const { return m_gravity_multiplier; }
 
 void Bird::set_invincibility(const bool p_invincible) { m_invincible = p_invincible; }
