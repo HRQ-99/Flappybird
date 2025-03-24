@@ -2,13 +2,10 @@
 
 #include <gdextension_interface.h>
 
-#include <godot_cpp/core/class_db.hpp>
-#include <godot_cpp/core/defs.hpp>
-#include <godot_cpp/godot.hpp>
-
 #include "bird.h"
 #include "level.h"
-#include "main_game.h"
+#include "options_menu.h"
+#include "speed_boost.h"
 
 using namespace godot;
 
@@ -19,9 +16,10 @@ void initialize_module(ModuleInitializationLevel p_level)
     return;
   }
 
-  GDREGISTER_RUNTIME_CLASS(MainGame);
   GDREGISTER_RUNTIME_CLASS(Bird);
   GDREGISTER_RUNTIME_CLASS(Level);
+  GDREGISTER_RUNTIME_CLASS(SpeedBoost);
+  GDREGISTER_RUNTIME_CLASS(OptionsMenu);
 }
 
 void uninitialize_module(ModuleInitializationLevel p_level)

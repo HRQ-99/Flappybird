@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://bos3yfn3v2b7m"]
+[gd_scene load_steps=2 format=3 uid="uid://bos3yfn3v2b7m"]
+
+[ext_resource type="Script" uid="uid://cap3ifnj81ka" path="res://scripts/pause_screen.gd" id="1_gchx3"]
 
 [node name="Pause Screen" type="CanvasLayer"]
+script = ExtResource("1_gchx3")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 8
@@ -39,3 +42,8 @@ text = " Go to Title  Screen "
 [node name="ExitGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit Game"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GoToTitleButton" to="." method="_on_go_to_title_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
