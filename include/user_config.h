@@ -10,11 +10,6 @@ class UserConfig : public godot::Node
  public:
   const godot::String SETTINGS_PATH = "user://settings.ini";
 
-  enum Sections
-  {
-    DISPLAY,
-    AUDIO
-  };
   enum Options
   {
     FULLSCREEN,
@@ -25,18 +20,31 @@ class UserConfig : public godot::Node
     EFFECTS_VOLUME
   };
 
+  // godot::Dictionary m_options =
+  // godot::Dictionary(godot::Dictionary(), godot::Variant::INT, godot::StringName("Options"), godot::Variant(),
+  // godot::Variant::STRING, godot::StringName("String"), godot::Variant());
+  godot::Dictionary m_options;
   void _ready() override;
 
- private:
-  godot::ConfigFile* config;
-  void create_default_config();
+  void load_user_config();
 
-  void save_display_config(godot::String key, godot::Variant value);
+  void save_display_config(Options key, godot::Variant value);
   void load_display_config();
 
-  void save_audio_config(godot::String key, godot::Variant value);
+  void save_audio_config(Options key, godot::Variant value);
   void load_audio_config();
+
+  godot::ConfigFile* get_user_config();
+
+ private:
+  UserConfig();
+  ~UserConfig();
+
+  godot::ConfigFile* config = memnew(godot::ConfigFile);
+
+  void create_default_config();
 
  protected:
   static void _bind_methods();
 };
+VARIANT_ENUM_CAST(UserConfig::Options);
