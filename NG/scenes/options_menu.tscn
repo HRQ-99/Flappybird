@@ -8,9 +8,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Display" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -24,7 +25,7 @@ theme_override_constants/separation = 8
 
 [node name="Fullscreen" type="HSplitContainer" parent="Display/DisplayVBox"]
 layout_mode = 2
-dragger_visibility = 2
+collapsed = true
 
 [node name="Label" type="Label" parent="Display/DisplayVBox/Fullscreen"]
 layout_mode = 2
@@ -36,7 +37,7 @@ layout_mode = 2
 
 [node name="CustomCursor" type="HSplitContainer" parent="Display/DisplayVBox"]
 layout_mode = 2
-dragger_visibility = 2
+collapsed = true
 
 [node name="Label" type="Label" parent="Display/DisplayVBox/CustomCursor"]
 layout_mode = 2
@@ -48,7 +49,7 @@ layout_mode = 2
 
 [node name="Vsync" type="HSplitContainer" parent="Display/DisplayVBox"]
 layout_mode = 2
-dragger_visibility = 2
+collapsed = true
 
 [node name="Label" type="Label" parent="Display/DisplayVBox/Vsync"]
 layout_mode = 2
@@ -59,7 +60,6 @@ text = "Vsync"
 layout_mode = 2
 
 [node name="Audio" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -74,7 +74,7 @@ theme_override_constants/separation = 8
 [node name="MasterVolume" type="HSplitContainer" parent="Audio/AudioVBox"]
 layout_mode = 2
 split_offset = 200
-dragger_visibility = 2
+dragging_enabled = false
 
 [node name="Label" type="Label" parent="Audio/AudioVBox/MasterVolume"]
 layout_mode = 2
@@ -88,7 +88,7 @@ theme = ExtResource("1_liyum")
 [node name="MusicVolume" type="HSplitContainer" parent="Audio/AudioVBox"]
 layout_mode = 2
 split_offset = 200
-dragger_visibility = 2
+dragging_enabled = false
 
 [node name="Label" type="Label" parent="Audio/AudioVBox/MusicVolume"]
 layout_mode = 2
@@ -101,7 +101,7 @@ size_flags_vertical = 4
 [node name="EffectsVolume" type="HSplitContainer" parent="Audio/AudioVBox"]
 layout_mode = 2
 split_offset = 200
-dragger_visibility = 2
+dragging_enabled = false
 
 [node name="Label" type="Label" parent="Audio/AudioVBox/EffectsVolume"]
 layout_mode = 2

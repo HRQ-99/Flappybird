@@ -8,6 +8,8 @@
 [node name="Game" type="Node"]
 script = ExtResource("1_iywne")
 
+[node name="UserConfig" type="UserConfig" parent="."]
+
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 

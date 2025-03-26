@@ -6,6 +6,7 @@
 #include "level.h"
 #include "options_menu.h"
 #include "speed_boost.h"
+#include "user_config.h"
 
 using namespace godot;
 
@@ -20,6 +21,7 @@ void initialize_module(ModuleInitializationLevel p_level)
   GDREGISTER_RUNTIME_CLASS(Level);
   GDREGISTER_RUNTIME_CLASS(SpeedBoost);
   GDREGISTER_RUNTIME_CLASS(OptionsMenu);
+  GDREGISTER_RUNTIME_CLASS(UserConfig);
 }
 
 void uninitialize_module(ModuleInitializationLevel p_level)
