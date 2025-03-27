@@ -12,7 +12,7 @@ shader = ExtResource("1_j1x08")
 [sub_resource type="CircleShape2D" id="CircleShape2D_j1x08"]
 radius = 700.0
 
-[node name="ScoreBoost" type="Area2D"]
+[node name="ScoreBoost" type="ScoreBoost"]
 collision_layer = 8
 
 [node name="MusicFadeArea" type="Area2D" parent="."]
