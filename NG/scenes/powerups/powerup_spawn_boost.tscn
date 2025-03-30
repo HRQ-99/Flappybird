@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgxa8yeutalpu"]
+[gd_scene load_steps=7 format=3 uid="uid://b43tf1fyq1sy0"]
 
 [ext_resource type="Shader" uid="uid://c7qmqbu03u643" path="res://shaders/PowerUps.gdshader" id="1_4au7j"]
 [ext_resource type="Texture2D" uid="uid://dqpx24dnr71ar" path="res://art/PowerUps/speedBoostPowerUp.png" id="2_s0en0"]
@@ -13,8 +13,7 @@ shader = ExtResource("1_4au7j")
 [sub_resource type="CircleShape2D" id="CircleShape2D_3qphg"]
 radius = 500.0
 
-[node name="SpeedBoost" type="SpeedBoost"]
-power_duration = 100.0
+[node name="PowerUpSpawnBoost" type="PowerUpSpawnBoost"]
 collision_layer = 8
 
 [node name="MusicFadeArea" type="Area2D" parent="."]
@@ -24,6 +23,7 @@ collision_layer = 8
 shape = SubResource("CircleShape2D_6f57i")
 
 [node name="BoostSprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.618933, 8.0619e-07, 2.40654e-07, 1)
 material = SubResource("ShaderMaterial_3qphg")
 position = Vector2(35, 81)
 texture = ExtResource("2_s0en0")
@@ -33,7 +33,7 @@ shape = SubResource("CircleShape2D_3qphg")
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 1
-wait_time = 5.0
+wait_time = 12.0
 
 [node name="Effect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_s0en0")
