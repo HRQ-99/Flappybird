@@ -1,6 +1,8 @@
 #pragma once
 
+#include "bird.h"
 #include "godot_cpp/classes/node2d.hpp"
+#include "powerups.h"
 
 class Level : public godot::Node2D
 {
@@ -11,6 +13,7 @@ class Level : public godot::Node2D
   void _process(double delta) override;
   void _input();
 
+  void bird_died();
   void set_game_paused_state(bool game_paused);
   bool get_game_paused_state() const;
 
@@ -21,6 +24,8 @@ class Level : public godot::Node2D
   float get_pipe_distance() const;
 
  private:
+  Bird* m_bird;
+  PowerUps* m_powerups = nullptr;
   Node2D* m_pipes_container = nullptr;
   bool m_game_paused = false;
   int m_score = 0;
@@ -28,6 +33,10 @@ class Level : public godot::Node2D
   float move_pipe_distance = 450;
 
   const int max_pipes = 5;
+  const godot::String end_screen_scene_path = "uid://kk7t04lsbu4m";
+
+  ~Level();
+  void spawn_powerup();
 
  protected:
   static void _bind_methods();

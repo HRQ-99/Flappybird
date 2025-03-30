@@ -29,10 +29,8 @@ class UserConfig : public godot::Node
   void load_user_config();
 
   void save_display_config(Options key, godot::Variant value);
-  void load_display_config();
 
   void save_audio_config(Options key, godot::Variant value);
-  void load_audio_config();
 
   godot::ConfigFile* get_user_config();
 
@@ -41,6 +39,7 @@ class UserConfig : public godot::Node
   ~UserConfig();
 
   godot::ConfigFile* config = memnew(godot::ConfigFile);
+  const godot::String custom_cursor_image = "res://art/custom_cursor.png";
 
   void create_default_config();
 

@@ -5,6 +5,7 @@
 #include "godot_cpp/classes/display_server.hpp"
 #include "godot_cpp/classes/h_slider.hpp"
 #include "godot_cpp/classes/input.hpp"
+#include "godot_cpp/classes/resource_loader.hpp"
 #include "godot_cpp/classes/scene_tree.hpp"
 
 using namespace godot;
@@ -78,6 +79,14 @@ void OptionsMenu::change_fullscreen(bool toggled_on)
 
 void OptionsMenu::change_custom_cursor(bool toggled_on)
 {
+  if (toggled_on)
+  {
+    DisplayServer::get_singleton()->cursor_set_custom_image(ResourceLoader::get_singleton()->load(custom_cursor_image));
+  }
+  else
+  {
+    DisplayServer::get_singleton()->cursor_set_custom_image(nullptr);
+  }
   config->save_display_config(UserConfig::CUSTOM_CURSOR, toggled_on);
 }
 

@@ -1,6 +1,8 @@
 #include "bird.h"
 
 #include "godot_cpp/classes/input.hpp"
+#include "level.h"
+#include "save_game.h"
 
 using namespace godot;
 
@@ -8,9 +10,10 @@ void Bird::_ready()
 {
   m_invincible = false;
   // make it equal to value from difficulty manager
-  // set_speed(150);
   m_gravity_multiplier = 1;
   m_speed_multiplier = 1;
+
+  connect("bird_died", Callable(Object::cast_to<Level>(get_parent()), "bird_died"));
 }
 
 void Bird::_physics_process(double delta)
@@ -42,14 +45,22 @@ void Bird::_physics_process(double delta)
       {
         set_process_mode(PROCESS_MODE_DISABLED);
         print_line("GAME OVER");
-        save_score();
-        // TODO change to end screen
+        SaveGame *save_game_ptr = memnew(SaveGame);
+        save_game_ptr->SaveGame::save_game(Object::cast_to<Level>(get_parent())->get_game_score());
+        emit_signal("bird_died");
+        //   TODO change to end screen
       }
-      else if (m_pipe_destroyer_active)
+      else
       {
         last_collision->queue_free();
       }
     }
+  }
+
+  if (input->is_action_just_pressed("Godmode"))
+  {
+    set_invincibility(!m_invincible);
+    emit_signal("toggle_invincibility_label");
   }
 }
 
@@ -58,11 +69,13 @@ void Bird::activate_shield()
   set_shield(true);
   set_invincibility(true);
 }
+
 void Bird::deactivate_shield()
 {
   set_shield(false);
   set_invincibility(false);
 }
+
 void Bird::activate_pipe_destroyer() {}
 void Bird::deactivate_pipe_destroyer() {}
 
@@ -70,10 +83,11 @@ void Bird::increase_bird_movespeed() {}
 
 void Bird::rotate_sprite() {}
 
-void Bird::save_score() {}
-
 void Bird::_bind_methods()
 {
+  ADD_SIGNAL(MethodInfo("bird_died"));
+  ADD_SIGNAL(MethodInfo("toggle_invincibility_label"));
+
   ClassDB::bind_method(D_METHOD("get_speed"), &Bird::get_speed);
   ClassDB::bind_method(D_METHOD("set_speed", "p_speed"), &Bird::set_speed);
   ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "speed"), "set_speed", "get_speed");

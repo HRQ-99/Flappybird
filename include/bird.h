@@ -7,6 +7,9 @@ class Bird : public godot::CharacterBody2D
   GDCLASS(Bird, CharacterBody2D)
 
  public:
+  godot::Signal bird_died;
+  godot::Signal toggle_invincibility_label;
+
   void _ready() override;
   void _physics_process(double delta) override;
 
@@ -57,8 +60,6 @@ class Bird : public godot::CharacterBody2D
   bool m_pipe_destroyer_active = false;
 
   static void rotate_sprite();
-
-  void save_score();
 
  protected:
   static void _bind_methods();
