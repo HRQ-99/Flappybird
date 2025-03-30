@@ -6,9 +6,6 @@ const level_scene:PackedScene = preload(level_scene_path)
 const pipe_scene_path:String = "uid://b3bholrqdxicg"
 const pipe_scene:PackedScene = preload(pipe_scene_path)
 
-func _physics_process(_delta: float) -> void:
- pass
-
 func make_pipe_pair()->Node2D:
   var top_pipe:=pipe_scene.instantiate() as StaticBody2D
   top_pipe.rotation_degrees=180
@@ -28,8 +25,12 @@ func restart_level()->void:
   get_tree().paused=false
   var lvl:Level=level_scene.instantiate()
   get_tree().current_scene.add_child(lvl)
-  call_deferred("queue_free")
+  queue_free()
+  #call_deferred("queue_free")
   
 func increase_score() -> void:
   score+=1
   $"Level-UI/HBox/Score".text = "Score:" + var_to_str(score)
+  
+func toggle_invincible_label()->void:
+  $"Level-UI/HBox/Godmode".visible = !$"Level-UI/HBox/Godmode".visible

@@ -28,6 +28,8 @@ class OptionsMenu : public godot::TabContainer
   godot::VBoxContainer* DisplayVBox;
   godot::VBoxContainer* AudioVBox;
 
+  const godot::String custom_cursor_image = "res://art/custom_cursor.png";
+
   void set_current_selected();
 
   void change_fullscreen(bool toggled_on);

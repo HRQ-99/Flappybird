@@ -6,13 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://cgxa8yeutalpu" path="res://scenes/powerups/speed_boost.tscn" id="4_mx8sn"]
 
 [node name="Level" type="Level"]
-process_mode = 3
+process_mode = 1
 script = ExtResource("1_w7c3h")
 
 [node name="Pause Screen" parent="." instance=ExtResource("2_w7c3h")]
+process_mode = 3
 visible = false
 
 [node name="Bird" parent="." instance=ExtResource("3_w8frs")]
+flyspeed = -800.0
 position = Vector2(100, 150)
 scale = Vector2(0.15, 0.15)
 
@@ -58,4 +60,6 @@ autostart = true
 position = Vector2(742, 189)
 scale = Vector2(0.1, 0.1)
 
+[connection signal="toggle_invincibility_label" from="Bird" to="." method="toggle_invincible_label"]
 [connection signal="timeout" from="ScoreTimer" to="." method="increase_score"]
+[connection signal="timeout" from="PowerUpSpawnTimer" to="." method="spawn_powerup"]

@@ -3,6 +3,7 @@
 #include "godot_cpp/classes/audio_server.hpp"
 #include "godot_cpp/classes/display_server.hpp"
 #include "godot_cpp/classes/file_access.hpp"
+#include "godot_cpp/classes/resource_loader.hpp"
 #include "options_menu.h"
 
 using namespace godot;
@@ -52,7 +53,14 @@ void UserConfig::load_user_config()
   {
     DisplayServer::get_singleton()->window_set_mode(godot::DisplayServer::WINDOW_MODE_MAXIMIZED);
   }
-  // TODO custom cursor
+  if (custom_cursor)
+  {
+    DisplayServer::get_singleton()->cursor_set_custom_image(ResourceLoader::get_singleton()->load(custom_cursor_image));
+  }
+  else
+  {
+    DisplayServer::get_singleton()->cursor_set_custom_image(nullptr);
+  }
   if (vsync)
   {
     DisplayServer::get_singleton()->window_set_vsync_mode(godot::DisplayServer::VSYNC_ENABLED);
@@ -90,15 +98,11 @@ void UserConfig::save_display_config(Options key, Variant value)
   config->save(SETTINGS_PATH);
 }
 
-void UserConfig::load_display_config() {}
-
 void UserConfig::save_audio_config(Options key, Variant value)
 {
   config->set_value("audio", m_options [key], value);
   config->save(SETTINGS_PATH);
 }
-
-void UserConfig::load_audio_config() {}
 
 void UserConfig::_bind_methods()
 {
@@ -107,10 +111,8 @@ void UserConfig::_bind_methods()
   ClassDB::bind_method(D_METHOD("create_default_config"), &UserConfig::create_default_config);
 
   ClassDB::bind_method(D_METHOD("save_display_config", "key", "value"), &UserConfig::save_display_config);
-  ClassDB::bind_method(D_METHOD("load_display_config"), &UserConfig::load_display_config);
 
   ClassDB::bind_method(D_METHOD("save_audio_config", "key", "value"), &UserConfig::save_audio_config);
-  ClassDB::bind_method(D_METHOD("load_audio_config"), &UserConfig::load_audio_config);
 
   ClassDB::bind_method(D_METHOD("get_user_config"), &UserConfig::get_user_config);
 

@@ -5,6 +5,8 @@
 #include "bird.h"
 #include "level.h"
 #include "options_menu.h"
+#include "powerups.h"
+#include "save_game.h"
 #include "score_boost.h"
 #include "speed_boost.h"
 #include "user_config.h"
@@ -22,7 +24,9 @@ void initialize_module(ModuleInitializationLevel p_level)
   GDREGISTER_RUNTIME_CLASS(Level);
   GDREGISTER_RUNTIME_CLASS(OptionsMenu);
   GDREGISTER_RUNTIME_CLASS(UserConfig);
+  GDREGISTER_RUNTIME_CLASS(SaveGame);
 
+  GDREGISTER_RUNTIME_CLASS(PowerUps);
   GDREGISTER_RUNTIME_CLASS(SpeedBoost);
   GDREGISTER_RUNTIME_CLASS(ScoreBoost);
 }

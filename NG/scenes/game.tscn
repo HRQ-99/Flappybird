@@ -38,25 +38,34 @@ size_flags_horizontal = 4
 [node name="UI-VBox" type="VBoxContainer" parent="MainUI/UI-Center"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_mode = 2
 theme_override_constants/separation = 16
 
 [node name="StartButton" type="Button" parent="MainUI/UI-Center/UI-VBox"]
 layout_mode = 2
+focus_next = NodePath("../OptionsButton")
+focus_previous = NodePath("../ExitButton")
 theme_override_font_sizes/font_size = 24
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="MainUI/UI-Center/UI-VBox"]
 layout_mode = 2
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../AchievementsButton")
 theme_override_font_sizes/font_size = 24
 text = "Options"
 
 [node name="AchievementsButton" type="Button" parent="MainUI/UI-Center/UI-VBox"]
 layout_mode = 2
+focus_next = NodePath("../ExitButton")
+focus_previous = NodePath("../OptionsButton")
 theme_override_font_sizes/font_size = 24
 text = "Achievemnts"
 
 [node name="ExitButton" type="Button" parent="MainUI/UI-Center/UI-VBox"]
 layout_mode = 2
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../AchievementsButton")
 theme_override_font_sizes/font_size = 24
 text = "Exit"
 
