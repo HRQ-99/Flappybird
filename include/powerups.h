@@ -1,5 +1,6 @@
 #pragma once
 
+#include "godot_cpp/classes/random_number_generator.hpp"
 #include "godot_cpp/classes/resource.hpp"
 
 class PowerUps : public godot::Resource
@@ -32,7 +33,10 @@ class PowerUps : public godot::Resource
   godot::Dictionary get_powerups_scenes_path() const;
 
  private:
-  void initialise_static_members();
+  godot::RandomNumberGenerator* rng;
+
+  ~PowerUps();
+  void initialise_members();
 
  protected:
   static void _bind_methods();

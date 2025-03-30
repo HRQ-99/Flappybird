@@ -1,10 +1,18 @@
 #include "powerups.h"
 
+#include "godot_cpp/classes/random_number_generator.hpp"
+
 using namespace godot;
 
-PowerUps::PowerUps() { initialise_static_members(); }
+PowerUps::PowerUps()
+{
+  initialise_members();
+  rng = memnew(RandomNumberGenerator);
+}
 
-void PowerUps::initialise_static_members()
+PowerUps::~PowerUps() { memdelete(rng); }
+
+void PowerUps::initialise_members()
 {
   powerups_scenes_path [SPEED_BOOST] = "uid://cgxa8yeutalpu";
   powerups_scenes_path [SCORE_BOOST] = "uid://5e1h0515ot2h";
@@ -18,16 +26,14 @@ void PowerUps::initialise_static_members()
 
 String PowerUps::get_random_powerup()
 {
-  int count = powerups_enum_array.size() - 1;
-  int chosen_powerup_index = call("randi_range", 0, count);
+  rng->randomize();
+  int chosen_powerup_index = rng->randi_range(0, powerups_enum_array.size() - 1);
   return powerups_scenes_path [powerups_enum_array [chosen_powerup_index]];
-
-  return "";
 }
 
 void PowerUps::_bind_methods()
 {
-  ClassDB::bind_method(D_METHOD("initialise_static_members"), &PowerUps::initialise_static_members);
+  ClassDB::bind_method(D_METHOD("initialise_static_members"), &PowerUps::initialise_members);
   ClassDB::bind_method(D_METHOD("get_random_powerup"), &PowerUps::get_random_powerup);
 
   ClassDB::bind_method(D_METHOD("get_powerups_scenes_path"), &PowerUps::get_powerups_scenes_path);

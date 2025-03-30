@@ -12,7 +12,6 @@ void SpeedBoost::_ready()
   m_timer = get_node<Timer>("Timer");
   m_timer->set_wait_time(m_power_duration);
   m_timer->connect("timeout", Callable(this, "power_expired"));
-  call_deferred("set_monitorable", false);
 
   connect("body_entered", Callable(this, "activate_power"));
   get_node<Area2D>("MusicFadeArea")->connect("body_entered", Callable(this, "music_fade_out"));
@@ -20,6 +19,9 @@ void SpeedBoost::_ready()
 
 void SpeedBoost::activate_power(Node2D* body_entered)
 {
+  call_deferred("set_monitorable", false);
+  set_visible(false);
+
   _bird = Object::cast_to<Bird>(body_entered);
   _bird->set_speed_multiplier(_bird->get_speed_multiplier() * m_speed_multiplier);
   _bird->set_gravity_multiplier(_bird->get_gravity_multiplier() * m_gravity_multiplier);

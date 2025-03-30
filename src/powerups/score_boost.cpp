@@ -14,12 +14,16 @@ void ScoreBoost::_ready()
   m_timer->set_wait_time(m_power_duration);
   m_timer->connect("timeout", Callable(this, "power_expired"));
 
+  call_deferred("set_monitorable", false);
   connect("body_entered", Callable(this, "activate_power"));
   get_node<Area2D>("MusicFadeArea")->connect("body_entered", Callable(this, "music_fade_out"));
 }
 
 void ScoreBoost::activate_power(Node2D* body_entered)
 {
+  call_deferred("set_monitorable", false);
+  set_visible(false);
+
   Timer* spawn_timer = get_parent()->get_node<Timer>("ScoreTimer");
   spawn_timer->set_wait_time(spawn_timer->get_wait_time() * m_score_multiplier);
 }
