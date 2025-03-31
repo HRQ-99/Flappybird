@@ -35,6 +35,10 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://nh270lj6oh4m"
 
+[global_group]
+
+PowerUp=""
+
 [gui]
 
 theme/custom="uid://7xvyjg4jos0g"

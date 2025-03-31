@@ -10,10 +10,11 @@ radius = 1700.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3qphg"]
 shader = ExtResource("1_4au7j")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3qphg"]
-radius = 500.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s0en0"]
+radius = 209.0
+height = 1000.0
 
-[node name="SpeedBoost" type="SpeedBoost"]
+[node name="SpeedBoost" type="SpeedBoost" groups=["PowerUp"]]
 power_duration = 100.0
 collision_layer = 8
 
@@ -25,11 +26,11 @@ shape = SubResource("CircleShape2D_6f57i")
 
 [node name="BoostSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3qphg")
-position = Vector2(35, 81)
+position = Vector2(29, 93)
 texture = ExtResource("2_s0en0")
 
 [node name="BoostHitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_3qphg")
+shape = SubResource("CapsuleShape2D_s0en0")
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 1
@@ -37,6 +38,5 @@ wait_time = 5.0
 
 [node name="Effect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_s0en0")
-pitch_scale = 6.0
 bus = &"Effects"
 parameters/looping = false

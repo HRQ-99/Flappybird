@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dvdq02i1dk4rg" path="res://scripts/level.gd" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://bos3yfn3v2b7m" path="res://scenes/pause_screen.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://gjviwon5blic" path="res://scenes/bird.tscn" id="3_w8frs"]
-[ext_resource type="PackedScene" uid="uid://b43tf1fyq1sy0" path="res://scenes/powerups/powerup_spawn_boost.tscn" id="4_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://coyndodm4v3l1" path="res://scenes/powerups/powerup_spawn_boost.tscn" id="4_mx8sn"]
 
 [node name="Level" type="Level"]
 process_mode = 1
@@ -57,7 +57,7 @@ wait_time = 20.0
 autostart = true
 
 [node name="PowerUpSpawnBoost" parent="." instance=ExtResource("4_mx8sn")]
-position = Vector2(691, 196)
+position = Vector2(708, 212)
 scale = Vector2(0.1, 0.1)
 
 [connection signal="toggle_invincibility_label" from="Bird" to="." method="toggle_invincible_label"]
