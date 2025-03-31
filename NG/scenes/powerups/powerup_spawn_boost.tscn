@@ -1,42 +1,41 @@
-[gd_scene load_steps=7 format=3 uid="uid://b43tf1fyq1sy0"]
+[gd_scene load_steps=7 format=3 uid="uid://coyndodm4v3l1"]
 
 [ext_resource type="Shader" uid="uid://c7qmqbu03u643" path="res://shaders/PowerUps.gdshader" id="1_4au7j"]
 [ext_resource type="Texture2D" uid="uid://dqpx24dnr71ar" path="res://art/PowerUps/speedBoostPowerUp.png" id="2_s0en0"]
-[ext_resource type="AudioStream" uid="uid://bhwjgoal7r3ya" path="res://sound/effects/speedBoostSoundEffect_2.mp3" id="3_s0en0"]
+[ext_resource type="AudioStream" uid="uid://bhwjgoal7r3ya" path="res://sound/effects/speedBoostSoundEffect_2.mp3" id="3_tvy4d"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6f57i"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_04lhq"]
 radius = 1700.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3qphg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2g11i"]
 shader = ExtResource("1_4au7j")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3qphg"]
-radius = 500.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvy4d"]
+radius = 214.0
+height = 1010.0
 
 [node name="PowerUpSpawnBoost" type="PowerUpSpawnBoost"]
 collision_layer = 8
 
 [node name="MusicFadeArea" type="Area2D" parent="."]
-collision_layer = 8
 
 [node name="FadeHitbox" type="CollisionShape2D" parent="MusicFadeArea"]
-shape = SubResource("CircleShape2D_6f57i")
+shape = SubResource("CircleShape2D_04lhq")
 
 [node name="BoostSprite" type="Sprite2D" parent="."]
-self_modulate = Color(0.618933, 8.0619e-07, 2.40654e-07, 1)
-material = SubResource("ShaderMaterial_3qphg")
-position = Vector2(35, 81)
+self_modulate = Color(0.647059, 0.00392157, 0.184314, 1)
+material = SubResource("ShaderMaterial_2g11i")
+position = Vector2(25, 96)
 texture = ExtResource("2_s0en0")
 
 [node name="BoostHitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_3qphg")
+shape = SubResource("CapsuleShape2D_tvy4d")
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 1
 wait_time = 12.0
 
 [node name="Effect" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_s0en0")
-pitch_scale = 6.0
+visible = false
+stream = ExtResource("3_tvy4d")
 bus = &"Effects"
-parameters/looping = false
