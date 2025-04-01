@@ -14,7 +14,7 @@ shader = ExtResource("1_4au7j")
 radius = 209.0
 height = 1000.0
 
-[node name="SpeedBoost" type="SpeedBoost" groups=["PowerUp"]]
+[node name="SpeedBoost" type="SpeedBoost"]
 power_duration = 100.0
 collision_layer = 8
 
@@ -40,3 +40,7 @@ wait_time = 5.0
 stream = ExtResource("3_s0en0")
 bus = &"Effects"
 parameters/looping = false
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 45.0
+autostart = true

@@ -20,13 +20,16 @@ class ScoreBoost : public godot::Area2D
  private:
   Bird* _bird = nullptr;
   godot::Timer* m_timer = nullptr;
+  godot::Timer* m_level_score_timer = nullptr;
   float m_score_multiplier = 0.5;
   float m_power_duration = 20;
+  const godot::String group_after_activation = "ActivatedPowerUp";
 
   virtual void activate_power(Node2D* body_entered);
   virtual void power_expired();
   virtual void music_fade_out(Node2D* body_entered);
   virtual void music_fade_in();
+  virtual void despawn();
 
  protected:
   static void _bind_methods();
