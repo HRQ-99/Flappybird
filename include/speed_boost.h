@@ -29,11 +29,13 @@ class SpeedBoost : public godot::Area2D
   float m_gravity_multiplier = 0.01;
   float m_power_duration = 5;
   bool m_invincible = true;
+  const godot::String group_after_activation = "ActivatedPowerUp";
 
   virtual void activate_power(Node2D* body_entered);
   virtual void power_expired();
   virtual void music_fade_out(Node2D* body_entered);
   virtual void music_fade_in();
+  virtual void despawn();
 
  protected:
   static void _bind_methods();

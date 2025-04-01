@@ -12,6 +12,7 @@ void SpeedBoost::_ready()
   m_timer = get_node<Timer>("Timer");
   m_timer->set_wait_time(m_power_duration);
   m_timer->connect("timeout", Callable(this, "power_expired"));
+  get_node<Timer>("DespawnTimer")->connect("timeout", Callable(this, "despawn"));
 
   connect("body_entered", Callable(this, "activate_power"));
   get_node<Area2D>("MusicFadeArea")->connect("body_entered", Callable(this, "music_fade_out"));
@@ -21,6 +22,7 @@ void SpeedBoost::activate_power(Node2D* body_entered)
 {
   call_deferred("set_monitorable", false);
   set_visible(false);
+  add_to_group(group_after_activation);
 
   _bird = Object::cast_to<Bird>(body_entered);
   _bird->set_speed_multiplier(_bird->get_speed_multiplier() * m_speed_multiplier);
@@ -53,12 +55,21 @@ void SpeedBoost::music_fade_in()
   get_tree()->get_current_scene()->get_node<AudioStreamPlayer2D>("BackgroundMusic")->set_volume_db(0);
 }
 
+void SpeedBoost::despawn()
+{
+  if (!is_in_group(group_after_activation))
+  {
+    call_deferred("queue_free");
+  }
+}
+
 void SpeedBoost::_bind_methods()
 {
   ClassDB::bind_method(D_METHOD("activate_power", "body_entered"), &SpeedBoost::activate_power);
   ClassDB::bind_method(D_METHOD("power_expired"), &SpeedBoost::power_expired);
   ClassDB::bind_method(D_METHOD("music_fade_out", "body_entered"), &SpeedBoost::music_fade_out);
   ClassDB::bind_method(D_METHOD("music_fade_in"), &SpeedBoost::music_fade_in);
+  ClassDB::bind_method(D_METHOD("despawn"), &SpeedBoost::despawn);
 
   ClassDB::bind_method(D_METHOD("get_speed_multiplier"), &SpeedBoost::get_speed_multiplier);
   ClassDB::bind_method(D_METHOD("set_speed_multiplier", "speed_multiplier"), &SpeedBoost::set_speed_multiplier);

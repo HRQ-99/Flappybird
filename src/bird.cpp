@@ -48,7 +48,6 @@ void Bird::_physics_process(double delta)
         SaveGame *save_game_ptr = memnew(SaveGame);
         save_game_ptr->SaveGame::save_game(Object::cast_to<Level>(get_parent())->get_game_score());
         emit_signal("bird_died");
-        //   TODO change to end screen
       }
       else
       {

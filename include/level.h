@@ -11,7 +11,6 @@ class Level : public godot::Node2D
  public:
   void _ready() override;
   void _process(double delta) override;
-  void _input();
 
   void bird_died();
   void set_game_paused_state(bool game_paused);

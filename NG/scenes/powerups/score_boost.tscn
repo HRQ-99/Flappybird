@@ -13,7 +13,7 @@ shader = ExtResource("1_j1x08")
 [sub_resource type="CircleShape2D" id="CircleShape2D_j1x08"]
 radius = 700.0
 
-[node name="ScoreBoost" type="ScoreBoost" groups=["PowerUp"]]
+[node name="ScoreBoost" type="ScoreBoost"]
 collision_layer = 8
 
 [node name="MusicFadeArea" type="Area2D" parent="."]
@@ -36,3 +36,7 @@ wait_time = 20.0
 [node name="Effect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_it6yb")
 bus = &"Effects"
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 45.0
+autostart = true

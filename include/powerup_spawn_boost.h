@@ -21,11 +21,13 @@ class PowerUpSpawnBoost : public godot::Area2D
   float m_power_duration = 12;
   float m_spawn_multiplier = 0.5;
   godot::Timer* m_level_powerup_spawn_timer = nullptr;
+  const godot::String group_after_activation = "ActivatedPowerUp";
 
   virtual void activate_power(Node2D* body_entered);
   virtual void power_expired();
   virtual void music_fade_out(Node2D* body_entered);
   virtual void music_fade_in();
+  virtual void despawn();
 
  protected:
   static void _bind_methods();

@@ -15,6 +15,7 @@ Level::~Level()
 {
   // memdelete(m_powerups);
   // memdelete(m_pipes_container);
+  // memdelete(m_powerups_container);
 }
 
 void Level::_ready()
@@ -58,8 +59,6 @@ void Level::_process(double delta)
     }
   }
 }
-
-void Level::_input() {}
 
 void Level::spawn_powerup()
 {

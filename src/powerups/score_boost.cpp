@@ -13,6 +13,7 @@ void ScoreBoost::_ready()
   m_timer = get_node<Timer>("Timer");
   m_timer->set_wait_time(m_power_duration);
   m_timer->connect("timeout", Callable(this, "power_expired"));
+  get_node<Timer>("DespawnTimer")->connect("timeout", Callable(this, "despawn"));
 
   call_deferred("set_monitorable", false);
   connect("body_entered", Callable(this, "activate_power"));
@@ -23,15 +24,16 @@ void ScoreBoost::activate_power(Node2D* body_entered)
 {
   call_deferred("set_monitorable", false);
   set_visible(false);
+  add_to_group(group_after_activation);
 
-  Timer* spawn_timer = get_parent()->get_node<Timer>("ScoreTimer");
-  spawn_timer->set_wait_time(spawn_timer->get_wait_time() * m_score_multiplier);
+  m_level_score_timer = get_parent()->get_node<Timer>("ScoreTimer");
+  m_level_score_timer->set_wait_time(m_level_score_timer->get_wait_time() * m_score_multiplier);
 }
 
 void ScoreBoost::power_expired()
 {
-  Timer* spawn_timer = get_parent()->get_node<Timer>("ScoreTimer");
-  spawn_timer->set_wait_time(spawn_timer->get_wait_time() / m_score_multiplier);
+  m_level_score_timer->set_wait_time(m_level_score_timer->get_wait_time() / m_score_multiplier);
+  call_deferred("queue_free");
 }
 
 void ScoreBoost::music_fade_out(Node2D* body_entered)
@@ -46,12 +48,21 @@ void ScoreBoost::music_fade_in()
   get_tree()->get_current_scene()->get_node<AudioStreamPlayer2D>("BackgroundMusic")->set_volume_db(0);
 }
 
+void ScoreBoost::despawn()
+{
+  if (!is_in_group(group_after_activation))
+  {
+    call_deferred("queue_free");
+  }
+}
+
 void ScoreBoost::_bind_methods()
 {
   ClassDB::bind_method(D_METHOD("activate_power", "body_entered"), &ScoreBoost::activate_power);
   ClassDB::bind_method(D_METHOD("power_expired"), &ScoreBoost::power_expired);
   ClassDB::bind_method(D_METHOD("music_fade_out", "body_entered"), &ScoreBoost::music_fade_out);
   ClassDB::bind_method(D_METHOD("music_fade_in"), &ScoreBoost::music_fade_in);
+  ClassDB::bind_method(D_METHOD("despawn"), &ScoreBoost::despawn);
 
   ClassDB::bind_method(D_METHOD("get_score_multiplier"), &ScoreBoost::get_score_multiplier);
   ClassDB::bind_method(D_METHOD("set_score_multiplier", "score_multiplier"), &ScoreBoost::set_score_multiplier);

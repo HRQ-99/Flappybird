@@ -57,7 +57,7 @@ wait_time = 20.0
 autostart = true
 
 [node name="PowerUpSpawnBoost" parent="." instance=ExtResource("4_mx8sn")]
-position = Vector2(708, 212)
+position = Vector2(607, 186)
 scale = Vector2(0.1, 0.1)
 
 [connection signal="toggle_invincibility_label" from="Bird" to="." method="toggle_invincible_label"]
