@@ -17,11 +17,13 @@ void PowerUps::initialise_members()
   powerups_scenes_path [SPEED_BOOST] = "uid://cgxa8yeutalpu";
   powerups_scenes_path [SCORE_BOOST] = "uid://5e1h0515ot2h";
   //  powerups_scenes_path [SHIELD] = "";
-  //  powerups_scenes_path [PIPE_DESTROYER] = "";
-  //  powerups_scenes_path [POWER_UP_SPAWN_BOOST] = "";
+  powerups_scenes_path [PIPE_DESTROYER] = "uid://bxpo0kcteytsv";
+  powerups_scenes_path [POWER_UP_SPAWN_BOOST] = "uid://coyndodm4v3l1";
 
   powerups_enum_array.append(SPEED_BOOST);
   powerups_enum_array.append(SCORE_BOOST);
+  powerups_enum_array.append(PIPE_DESTROYER);
+  powerups_enum_array.append(POWER_UP_SPAWN_BOOST);
 }
 
 String PowerUps::get_random_powerup()
@@ -49,8 +51,8 @@ void PowerUps::_bind_methods()
   BIND_ENUM_CONSTANT(SPEED_BOOST);
   BIND_ENUM_CONSTANT(SCORE_BOOST);
   // BIND_ENUM_CONSTANT(SHIELD);
-  // BIND_ENUM_CONSTANT(PIPE_DESTROYER);
-  // BIND_ENUM_CONSTANT(POWER_UP_SPAWN_BOOST);
+  BIND_ENUM_CONSTANT(PIPE_DESTROYER);
+  BIND_ENUM_CONSTANT(POWER_UP_SPAWN_BOOST);
 }
 
 void PowerUps::set_powerups_enum_array(godot::Array enum_array) { powerups_enum_array = enum_array; }

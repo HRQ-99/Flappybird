@@ -15,8 +15,8 @@ class Bird : public godot::CharacterBody2D
 
   void activate_shield();
   void deactivate_shield();
-  void activate_pipe_destroyer();
-  void deactivate_pipe_destroyer();
+  void activate_pipe_destroyer(float scale_multiplier);
+  void deactivate_pipe_destroyer(float scale_multiplier);
 
   void increase_bird_movespeed();
 

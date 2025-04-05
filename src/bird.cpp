@@ -1,6 +1,8 @@
 #include "bird.h"
 
 #include "godot_cpp/classes/input.hpp"
+#include "godot_cpp/classes/property_tweener.hpp"
+#include "godot_cpp/classes/tween.hpp"
 #include "level.h"
 #include "save_game.h"
 
@@ -44,7 +46,6 @@ void Bird::_physics_process(double delta)
       if (!m_pipe_destroyer_active)
       {
         set_process_mode(PROCESS_MODE_DISABLED);
-        print_line("GAME OVER");
         SaveGame *save_game_ptr = memnew(SaveGame);
         save_game_ptr->SaveGame::save_game(Object::cast_to<Level>(get_parent())->get_game_score());
         emit_signal("bird_died");
@@ -75,8 +76,18 @@ void Bird::deactivate_shield()
   set_invincibility(false);
 }
 
-void Bird::activate_pipe_destroyer() {}
-void Bird::deactivate_pipe_destroyer() {}
+void Bird::activate_pipe_destroyer(float scale_multiplier)
+{
+  m_pipe_destroyer_active = true;
+  Ref<Tween> scale_tween = create_tween();
+  scale_tween->tween_property(this, "scale", get_scale() * scale_multiplier, 1);
+}
+void Bird::deactivate_pipe_destroyer(float scale_multiplier)
+{
+  m_pipe_destroyer_active = false;
+  Ref<Tween> scale_tween = create_tween();
+  scale_tween->tween_property(this, "scale", get_scale() / scale_multiplier, 1);
+}
 
 void Bird::increase_bird_movespeed() {}
 

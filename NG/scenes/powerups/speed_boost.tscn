@@ -15,7 +15,7 @@ radius = 209.0
 height = 1000.0
 
 [node name="SpeedBoost" type="SpeedBoost"]
-power_duration = 100.0
+power_duration = 5.0
 collision_layer = 8
 
 [node name="MusicFadeArea" type="Area2D" parent="."]

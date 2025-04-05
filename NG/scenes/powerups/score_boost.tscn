@@ -14,6 +14,7 @@ shader = ExtResource("1_j1x08")
 radius = 700.0
 
 [node name="ScoreBoost" type="ScoreBoost"]
+power_duration = 20.0
 collision_layer = 8
 
 [node name="MusicFadeArea" type="Area2D" parent="."]
