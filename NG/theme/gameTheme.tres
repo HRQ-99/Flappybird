@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=53 format=4 uid="uid://7xvyjg4jos0g"]
+[gd_resource type="Theme" load_steps=55 format=4 uid="uid://7xvyjg4jos0g"]
 
 [ext_resource type="Texture2D" uid="uid://bmvf0av36wl86" path="res://art/UI-art/Button_1_hover.png" id="1_gaqo6"]
 [ext_resource type="Texture2D" uid="uid://b10yhyy2qrtj1" path="res://art/UI-art/Button.png" id="2_k4kb0"]
@@ -74,6 +74,22 @@ texture_margin_left = 16.0
 texture_margin_top = 5.0
 texture_margin_right = 16.0
 texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ixq8m"]
+texture = ExtResource("1_gaqo6")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1kr5t"]
+texture = ExtResource("2_k4kb0")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+draw_center = false
 
 [sub_resource type="Image" id="Image_f7qhq"]
 data = {
@@ -1526,42 +1542,42 @@ cache/2/15/0/underline_thickness = 0.75
 cache/2/15/0/scale = 1.0
 cache/2/15/0/textures/0/offsets = PackedInt32Array(58, 0, 198, 16, 40, 16, 216, 17)
 cache/2/15/0/textures/0/image = SubResource("Image_q3kwn")
-cache/2/15/0/glyphs/3/advance = Vector2(39.8904, 15.0781)
+cache/2/15/0/glyphs/3/advance = Vector2(41.8591, 15.0781)
 cache/2/15/0/glyphs/3/offset = Vector2(0, 0)
 cache/2/15/0/glyphs/3/size = Vector2(0, 0)
 cache/2/15/0/glyphs/3/uv_rect = Rect2(0, 0, 0, 0)
 cache/2/15/0/glyphs/3/texture_idx = -1
-cache/2/15/0/glyphs/40/advance = Vector2(44.375, 15.0781)
+cache/2/15/0/glyphs/40/advance = Vector2(46.3438, 15.0781)
 cache/2/15/0/glyphs/40/offset = Vector2(0, -13)
 cache/2/15/0/glyphs/40/size = Vector2(12, 14)
 cache/2/15/0/glyphs/40/uv_rect = Rect2(1, 1, 12, 14)
 cache/2/15/0/glyphs/40/texture_idx = 0
-cache/2/15/0/glyphs/81/advance = Vector2(45.5154, 15.0781)
+cache/2/15/0/glyphs/81/advance = Vector2(47.4841, 15.0781)
 cache/2/15/0/glyphs/81/offset = Vector2(0, -11)
 cache/2/15/0/glyphs/81/size = Vector2(13, 12)
 cache/2/15/0/glyphs/81/uv_rect = Rect2(15, 1, 13, 12)
 cache/2/15/0/glyphs/81/texture_idx = 0
-cache/2/15/0/glyphs/68/advance = Vector2(44.7034, 15.0781)
+cache/2/15/0/glyphs/68/advance = Vector2(46.6721, 15.0781)
 cache/2/15/0/glyphs/68/offset = Vector2(-1, -11)
 cache/2/15/0/glyphs/68/size = Vector2(13, 12)
 cache/2/15/0/glyphs/68/uv_rect = Rect2(30, 1, 13, 12)
 cache/2/15/0/glyphs/68/texture_idx = 0
-cache/2/15/0/glyphs/69/advance = Vector2(45.3438, 15.0781)
+cache/2/15/0/glyphs/69/advance = Vector2(47.3125, 15.0781)
 cache/2/15/0/glyphs/69/offset = Vector2(0, -14)
 cache/2/15/0/glyphs/69/size = Vector2(13, 15)
 cache/2/15/0/glyphs/69/uv_rect = Rect2(1, 17, 13, 15)
 cache/2/15/0/glyphs/69/texture_idx = 0
-cache/2/15/0/glyphs/79/advance = Vector2(40.1875, 15.0781)
+cache/2/15/0/glyphs/79/advance = Vector2(42.1562, 15.0781)
 cache/2/15/0/glyphs/79/offset = Vector2(0, -14)
 cache/2/15/0/glyphs/79/size = Vector2(8, 15)
 cache/2/15/0/glyphs/79/uv_rect = Rect2(16, 17, 8, 15)
 cache/2/15/0/glyphs/79/texture_idx = 0
-cache/2/15/0/glyphs/72/advance = Vector2(44.6404, 15.0781)
+cache/2/15/0/glyphs/72/advance = Vector2(46.6091, 15.0781)
 cache/2/15/0/glyphs/72/offset = Vector2(0, -11)
 cache/2/15/0/glyphs/72/size = Vector2(12, 12)
 cache/2/15/0/glyphs/72/uv_rect = Rect2(45, 1, 12, 12)
 cache/2/15/0/glyphs/72/texture_idx = 0
-cache/2/15/0/glyphs/71/advance = Vector2(45.3438, 15.0781)
+cache/2/15/0/glyphs/71/advance = Vector2(47.3125, 15.0781)
 cache/2/15/0/glyphs/71/offset = Vector2(0, -14)
 cache/2/15/0/glyphs/71/size = Vector2(13, 15)
 cache/2/15/0/glyphs/71/uv_rect = Rect2(26, 17, 13, 15)
@@ -1890,6 +1906,8 @@ HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_8dvif")
 HSlider/styles/slider = SubResource("StyleBoxTexture_hwj5l")
 OptionButton/constants/align_to_largest_stylebox = 0
 OptionButton/constants/arrow_margin = 20
+Panel/styles/panel = SubResource("StyleBoxTexture_ixq8m")
+RichTextLabel/styles/normal = SubResource("StyleBoxTexture_1kr5t")
 TabBar/colors/drop_mark_color = Color(1, 1, 1, 1)
 TabBar/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 TabBar/colors/font_hovered_color = Color(0.95, 0.95, 0.95, 1)

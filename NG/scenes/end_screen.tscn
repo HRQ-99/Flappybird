@@ -1,21 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://kk7t04lsbu4m"]
+[gd_scene load_steps=6 format=3 uid="uid://kk7t04lsbu4m"]
 
 [ext_resource type="Shader" uid="uid://b6vaeg28x64kw" path="res://shaders/EndScreen.gdshader" id="1_6e1uj"]
 [ext_resource type="Script" uid="uid://vc18am25fap3" path="res://scripts/end_screen.gd" id="1_jc7ji"]
 [ext_resource type="Texture2D" uid="uid://cdnrggovqtkqh" path="res://art/background_2.png" id="1_kq7ac"]
+[ext_resource type="Script" uid="uid://bwx36gplqr5ck" path="res://scripts/background.gd" id="4_87vmq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jc7ji"]
 shader = ExtResource("1_6e1uj")
+shader_parameter/tiled_factor = Vector2(0.9, 0.9)
+shader_parameter/aspect_ratio = 0.5625
+shader_parameter/time_scale = Vector2(1, 1)
+shader_parameter/offset_scale = Vector2(5, 1)
+shader_parameter/amplitude = Vector2(0.05, 0.01)
 
 [node name="End Screen" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_jc7ji")
 
 [node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 3
 material = SubResource("ShaderMaterial_jc7ji")
 position = Vector2(320, 170)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_kq7ac")
+script = ExtResource("4_87vmq")
 
 [node name="Margin" type="MarginContainer" parent="."]
 anchors_preset = 8
@@ -23,12 +31,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -36.0
-offset_right = 0.5
-offset_bottom = 36.0
+offset_left = -199.0
+offset_top = -96.0
+offset_right = 199.0
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
 [node name="VBox" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
@@ -37,6 +49,7 @@ alignment = 1
 [node name="ScoreLabel" type="RichTextLabel" parent="Margin/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.835294, 0.101961, 0.188235, 1)
 bbcode_enabled = true
 text = "Score: 0"
 fit_content = true
@@ -59,3 +72,5 @@ size_flags_vertical = 3
 bbcode_enabled = true
 text = "Press [u]Esc[/u] to go back to title screen."
 fit_content = true
+
+[connection signal="item_rect_changed" from="Background" to="Background" method="changing_shader_aspect_ratio"]

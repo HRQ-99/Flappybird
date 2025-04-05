@@ -2,9 +2,11 @@
 
 #include <gdextension_interface.h>
 
+#include "base_powerups.h"
 #include "bird.h"
 #include "level.h"
 #include "options_menu.h"
+#include "pipe_destroyer.h"
 #include "powerup_spawn_boost.h"
 #include "powerups.h"
 #include "save_game.h"
@@ -27,10 +29,12 @@ void initialize_module(ModuleInitializationLevel p_level)
   GDREGISTER_RUNTIME_CLASS(UserConfig);
   GDREGISTER_RUNTIME_CLASS(SaveGame);
 
+  GDREGISTER_RUNTIME_CLASS(BasePowerUps);
   GDREGISTER_RUNTIME_CLASS(PowerUps);
   GDREGISTER_RUNTIME_CLASS(SpeedBoost);
   GDREGISTER_RUNTIME_CLASS(ScoreBoost);
   GDREGISTER_RUNTIME_CLASS(PowerUpSpawnBoost);
+  GDREGISTER_RUNTIME_CLASS(PipeDestroyer);
 }
 
 void uninitialize_module(ModuleInitializationLevel p_level)

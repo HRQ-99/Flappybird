@@ -14,8 +14,8 @@ class PowerUps : public godot::Resource
   {
     SPEED_BOOST,
     SCORE_BOOST,
-    // PIPE_DESTROYER,
-    // POWER_UP_SPAWN_BOOST,
+    PIPE_DESTROYER,
+    POWER_UP_SPAWN_BOOST,
     // SHIELD,
     //  GUIDE,
   };
