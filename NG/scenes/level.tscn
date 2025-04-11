@@ -10,6 +10,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppgk2"]
 
 [node name="Level" type="Level" groups=["Level"]]
+[node name="Level" type="Level"]
 process_mode = 1
 script = ExtResource("1_w7c3h")
 
@@ -64,6 +65,8 @@ autostart = true
 
 [node name="SpeedBoost" parent="." instance=ExtResource("4_mx8sn")]
 position = Vector2(240, 214)
+[node name="PowerUpSpawnBoost" parent="." instance=ExtResource("4_mx8sn")]
+position = Vector2(682, 202)
 scale = Vector2(0.1, 0.1)
 
 [connection signal="changing_settins" from="Pause Screen" to="." method="changing_settings"]
