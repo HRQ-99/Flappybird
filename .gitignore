@@ -5,6 +5,7 @@
 *.exp
 *.os
 *.so
+*.o
 
 /.cache/
 /compile_commands.json

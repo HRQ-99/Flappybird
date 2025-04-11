@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd84sgsqa4mbc"]
+
+[ext_resource type="Texture2D" uid="uid://dqpx24dnr71ar" path="res://art/PowerUps/speedBoostPowerUp.png" id="1_5e7lm"]
+
+[node name="Achievements" type="CanvasLayer"]
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="GridContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/MarginContainer/HSplitContainer"]
+position = Vector2(195, 192)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_5e7lm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GridContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+text = "
+
+dfdf"

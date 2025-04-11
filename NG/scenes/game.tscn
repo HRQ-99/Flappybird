@@ -74,7 +74,7 @@ stream = ExtResource("2_yqjtg")
 autoplay = true
 bus = &"Music"
 
-[connection signal="changing_settins" from="MainUI" to="." method="change_settings"]
+[connection signal="changing_settings" from="MainUI" to="." method="change_settings"]
 [connection signal="starting_level" from="MainUI" to="." method="starting_level"]
 [connection signal="pressed" from="MainUI/UI-Center/UI-VBox/StartButton" to="MainUI" method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainUI/UI-Center/UI-VBox/OptionsButton" to="MainUI" method="_on_options_button_pressed"]

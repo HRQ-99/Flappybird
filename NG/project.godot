@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Flappybird"
 run/main_scene="uid://btwtgatm1f6gs"
+run/print_header=false
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
 config/windows_native_icon="res://art/flappybird_icon.ico"
@@ -35,9 +36,14 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://nh270lj6oh4m"
 
+[dotnet]
+
+project/assembly_name="Flappybird"
+
 [global_group]
 
 ActivatedPowerUp=""
+Level=""
 
 [gui]
 

@@ -4,6 +4,7 @@
 
 #include "base_powerups.h"
 #include "bird.h"
+#include "boost_trail.h"
 #include "level.h"
 #include "options_menu.h"
 #include "pipe_destroyer.h"
@@ -35,6 +36,8 @@ void initialize_module(ModuleInitializationLevel p_level)
   GDREGISTER_RUNTIME_CLASS(ScoreBoost);
   GDREGISTER_RUNTIME_CLASS(PowerUpSpawnBoost);
   GDREGISTER_RUNTIME_CLASS(PipeDestroyer);
+
+  GDREGISTER_RUNTIME_CLASS(BoostTrail);
 }
 
 void uninitialize_module(ModuleInitializationLevel p_level)

@@ -1,5 +1,9 @@
 #include "speed_boost.h"
 
+#include "boost_trail.h"
+#include "godot_cpp/classes/packed_scene.hpp"
+#include "godot_cpp/classes/resource_loader.hpp"
+
 using namespace godot;
 
 void SpeedBoost::activate_power(Node2D* body_entered)
@@ -7,6 +11,11 @@ void SpeedBoost::activate_power(Node2D* body_entered)
   BasePowerUps::pre_activation();
 
   m_bird = Object::cast_to<Bird>(body_entered);
+
+  Node* trail = Ref<PackedScene>(ResourceLoader::get_singleton()->load(trail_scene_path))->instantiate();
+  Object::cast_to<BoostTrail>(trail)->initialize(m_bird, m_power_duration);
+  m_bird->add_child(trail);
+
   m_bird->set_speed_multiplier(m_bird->get_speed_multiplier() * m_speed_multiplier);
   m_bird->set_gravity_multiplier(m_bird->get_gravity_multiplier() * m_gravity_multiplier);
   m_bird->set_invincibility(m_invincible);

@@ -23,6 +23,8 @@ class SpeedBoost : public BasePowerUps
   float m_gravity_multiplier = 0.01;
   bool m_invincible = true;
 
+  const godot::String trail_scene_path = "uid://ofm6w6xd4us3";
+
   virtual void activate_power(Node2D* body_entered) override;
   virtual void power_expired() override;
 

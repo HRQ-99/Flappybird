@@ -16,6 +16,14 @@ void OptionsMenu::_ready()
   config_file = config->UserConfig::get_user_config();
 
   connect("back_to_title_screen", Callable(get_tree()->get_current_scene(), "change_settings"));
+
+  Node* level = get_tree()->get_first_node_in_group("Level");
+  if (level)
+  {
+    connect("back_to_level", Callable(level, "back_from_options"));
+  }
+  level = nullptr;
+
   DisplayVBox = get_node<VBoxContainer>("Display/DisplayVBox");
   AudioVBox = get_node<VBoxContainer>("Audio/AudioVBox");
 
@@ -35,8 +43,17 @@ void OptionsMenu::_input()
   if (Input::get_singleton()->is_action_just_pressed("Escape"))
   {
     set_visible(false);
-    emit_signal("back_to_title_screen");
     call_deferred("queue_free");
+
+    switch (m_context)
+    {
+      case TITLE_SCREEN:
+        emit_signal("back_to_title_screen");
+        break;
+      case LEVEL:
+        emit_signal("back_to_level");
+        break;
+    }
   }
 }
 
@@ -144,9 +161,21 @@ void OptionsMenu::_bind_methods()
 
   ClassDB::bind_method(D_METHOD("change_effects_volume", "value_changed"), &OptionsMenu::change_effects_volume);
 
+  ClassDB::bind_method(D_METHOD("get_current_context"), &OptionsMenu::get_current_context);
+  ClassDB::bind_method(D_METHOD("set_current_context", "context"), &OptionsMenu::set_current_context);
+  ADD_PROPERTY(PropertyInfo(Variant::INT, "current_context", godot::PROPERTY_HINT_ENUM, "Title Screen, Level"),
+               "set_current_context", "get_current_context");
+
   ADD_SIGNAL(MethodInfo("back_to_title_screen"));
+  ADD_SIGNAL(MethodInfo("back_to_level"));
 
   BIND_ENUM_CONSTANT(MASTER_BUS);
   BIND_ENUM_CONSTANT(MUSIC_BUS);
   BIND_ENUM_CONSTANT(EFFECTS_BUS);
+
+  BIND_ENUM_CONSTANT(TITLE_SCREEN);
+  BIND_ENUM_CONSTANT(LEVEL);
 }
+
+void OptionsMenu::set_current_context(OptionsMenu::CalledFrom context) { m_context = context; }
+OptionsMenu::CalledFrom OptionsMenu::get_current_context() { return m_context; }

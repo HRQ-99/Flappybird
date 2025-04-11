@@ -17,16 +17,27 @@ class OptionsMenu : public godot::TabContainer
     EFFECTS_BUS
   };
 
+  enum CalledFrom
+  {
+    TITLE_SCREEN,
+    LEVEL
+  };
+
   godot::Signal back_to_title_screen;
+  godot::Signal back_to_level;
 
   void _ready() override;
   void _input();
+
+  void set_current_context(CalledFrom context);
+  CalledFrom get_current_context();
 
  private:
   UserConfig* config = nullptr;
   godot::ConfigFile* config_file = nullptr;
   godot::VBoxContainer* DisplayVBox;
   godot::VBoxContainer* AudioVBox;
+  CalledFrom m_context = TITLE_SCREEN;
 
   const godot::String custom_cursor_image = "res://art/custom_cursor.png";
 
@@ -49,3 +60,4 @@ class OptionsMenu : public godot::TabContainer
 };
 
 VARIANT_ENUM_CAST(OptionsMenu::AudioBuses);
+VARIANT_ENUM_CAST(OptionsMenu::CalledFrom);

@@ -4,8 +4,8 @@ signal back_to_title_screen
 signal restart_level
 
 func _ready() -> void:
-  back_to_title_screen.connect(get_node("/root/Game/").back_to_title_screen)
-  restart_level.connect(get_parent().restart_level)
+  back_to_title_screen.connect(get_tree().current_scene.back_to_title_screen)
+  restart_level.connect(get_tree().current_scene.restart_level)
 
 func _input(event: InputEvent) -> void:
   if (event.is_action_pressed("Restart")):
