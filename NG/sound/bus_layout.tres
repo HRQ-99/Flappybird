@@ -1,0 +1,80 @@
+[gd_resource type="AudioBusLayout" load_steps=12 format=3 uid="uid://b6xfs40ne2l7c"]
+
+[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_ic010"]
+resource_name = "Phaser"
+range_min_hz = 500.0
+range_max_hz = 1000.0
+rate_hz = 2.0
+depth = 0.5
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_ic010"]
+resource_name = "Chorus"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_pbkhd"]
+resource_name = "Reverb"
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_ic010"]
+resource_name = "Delay"
+tap1_delay_ms = 100.0
+tap1_pan = 0.0
+tap2_delay_ms = 200.0
+tap2_pan = 0.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_ic010"]
+resource_name = "Reverb"
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_pbkhd"]
+resource_name = "Chorus"
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_pbkhd"]
+resource_name = "Delay"
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_14swy"]
+resource_name = "Chorus"
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_43sgj"]
+resource_name = "Chorus"
+voice/1/pan = 0.0
+voice/2/pan = 0.0
+
+[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_pbkhd"]
+resource_name = "Phaser"
+
+[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_14swy"]
+resource_name = "Phaser"
+
+[resource]
+bus/1/name = &"Music"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -1.51703
+bus/1/send = &"Master"
+bus/2/name = &"Effects"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectPhaser_ic010")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectChorus_ic010")
+bus/2/effect/1/enabled = true
+bus/2/effect/2/effect = SubResource("AudioEffectDelay_ic010")
+bus/2/effect/2/enabled = false
+bus/2/effect/3/effect = SubResource("AudioEffectReverb_ic010")
+bus/2/effect/3/enabled = false
+bus/2/effect/4/effect = SubResource("AudioEffectChorus_pbkhd")
+bus/2/effect/4/enabled = false
+bus/2/effect/5/effect = SubResource("AudioEffectDelay_pbkhd")
+bus/2/effect/5/enabled = false
+bus/2/effect/6/effect = SubResource("AudioEffectChorus_14swy")
+bus/2/effect/6/enabled = false
+bus/2/effect/7/effect = SubResource("AudioEffectChorus_43sgj")
+bus/2/effect/7/enabled = true
+bus/2/effect/8/effect = SubResource("AudioEffectPhaser_pbkhd")
+bus/2/effect/8/enabled = true
+bus/2/effect/9/effect = SubResource("AudioEffectPhaser_14swy")
+bus/2/effect/9/enabled = false
+bus/2/effect/10/effect = SubResource("AudioEffectReverb_pbkhd")
+bus/2/effect/10/enabled = false

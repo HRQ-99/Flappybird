@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://btwtgatm1f6gs"]
+
+[ext_resource type="Script" uid="uid://d8nsn5o4ovfq" path="res://scripts/game.gd" id="1_iywne"]
+[ext_resource type="Texture2D" uid="uid://cdnrggovqtkqh" path="res://art/background_2.png" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://dki8jx76473pj" path="res://scripts/main_ui.gd" id="2_lnu2h"]
+[ext_resource type="AudioStream" uid="uid://cpp3jrxk4yulg" path="res://sound/music/01.02. Minuet In G.mp3" id="2_yqjtg"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_iywne")
+
+[node name="UserConfig" type="UserConfig" parent="."]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BackgroundSprite" type="Sprite2D" parent="Background"]
+position = Vector2(319, 180)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_uwrxv")
+
+[node name="MainUI" type="CanvasLayer" parent="."]
+script = ExtResource("2_lnu2h")
+
+[node name="UI-Center" type="CenterContainer" parent="MainUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -94.0
+offset_right = 44.5
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="UI-VBox" type="VBoxContainer" parent="MainUI/UI-Center"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 16
+
+[node name="StartButton" type="Button" parent="MainUI/UI-Center/UI-VBox"]
+layout_mode = 2
+focus_next = NodePath("../OptionsButton")
+focus_previous = NodePath("../ExitButton")
+theme_override_font_sizes/font_size = 24
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="MainUI/UI-Center/UI-VBox"]
+layout_mode = 2
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../AchievementsButton")
+theme_override_font_sizes/font_size = 24
+text = "Options"
+
+[node name="AchievementsButton" type="Button" parent="MainUI/UI-Center/UI-VBox"]
+layout_mode = 2
+focus_next = NodePath("../ExitButton")
+focus_previous = NodePath("../OptionsButton")
+theme_override_font_sizes/font_size = 24
+text = "Achievemnts"
+
+[node name="ExitButton" type="Button" parent="MainUI/UI-Center/UI-VBox"]
+layout_mode = 2
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../AchievementsButton")
+theme_override_font_sizes/font_size = 24
+text = "Exit"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_yqjtg")
+autoplay = true
+bus = &"Music"
+
+[connection signal="changing_settings" from="MainUI" to="." method="change_settings"]
+[connection signal="starting_level" from="MainUI" to="." method="starting_level"]
+[connection signal="pressed" from="MainUI/UI-Center/UI-VBox/StartButton" to="MainUI" method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainUI/UI-Center/UI-VBox/OptionsButton" to="MainUI" method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainUI/UI-Center/UI-VBox/AchievementsButton" to="MainUI" method="_on_achievements_button_pressed"]
+[connection signal="pressed" from="MainUI/UI-Center/UI-VBox/ExitButton" to="MainUI" method="_on_exit_button_pressed"]

@@ -1,0 +1,17 @@
+#C++ ignores
+*.obj
+*.dll
+*.lib
+*.exp
+*.os
+*.so
+*.o
+
+/.cache/
+/compile_commands.json
+
+#Godot cpp
+/godot-cpp/gen/
+
+#SCons
+.sconsign.dblite
