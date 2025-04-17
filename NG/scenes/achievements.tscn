@@ -1,32 +1,46 @@
 [gd_scene load_steps=2 format=3 uid="uid://cd84sgsqa4mbc"]
 
-[ext_resource type="Texture2D" uid="uid://dqpx24dnr71ar" path="res://art/PowerUps/speedBoostPowerUp.png" id="1_5e7lm"]
+[ext_resource type="Texture2D" uid="uid://dcsxuu3ni1tr1" path="res://icon.svg" id="1_5e7lm"]
 
 [node name="Achievements" type="CanvasLayer"]
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="GridContainer"]
+[node name="VBox" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="HSplitContainer" type="HSplitContainer" parent="GridContainer/MarginContainer"]
+[node name="Ach1" type="HSplitContainer" parent="HBox/VBox"]
 layout_mode = 2
+dragger_visibility = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="GridContainer/MarginContainer/HSplitContainer"]
-position = Vector2(195, 192)
-scale = Vector2(0.1, 0.1)
+[node name="Sprite2D" type="TextureRect" parent="HBox/VBox/Ach1"]
+layout_mode = 2
 texture = ExtResource("1_5e7lm")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GridContainer/MarginContainer/HSplitContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="HBox/VBox/Ach1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "dfdf"
+
+[node name="Ach2" type="HSplitContainer" parent="HBox/VBox"]
+layout_mode = 2
+dragger_visibility = 2
+
+[node name="Sprite2D" type="TextureRect" parent="HBox/VBox/Ach2"]
+layout_mode = 2
+texture = ExtResource("1_5e7lm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBox/VBox/Ach2"]
 layout_mode = 2
 text = "
 
 dfdf"
+
+[node name="ScrollBar" type="VScrollBar" parent="HBox"]
+layout_mode = 2

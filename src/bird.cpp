@@ -4,14 +4,12 @@
 #include "godot_cpp/classes/property_tweener.hpp"
 #include "godot_cpp/classes/tween.hpp"
 #include "level.h"
-#include "save_game.h"
 
 using namespace godot;
 
 void Bird::_ready()
 {
   m_invincible = false;
-  // make it equal to value from difficulty manager
   m_gravity_multiplier = 1;
   m_speed_multiplier = 1;
 
@@ -46,8 +44,6 @@ void Bird::_physics_process(double delta)
       if (!m_pipe_destroyer_active)
       {
         set_process_mode(PROCESS_MODE_DISABLED);
-        SaveGame *save_game_ptr = memnew(SaveGame);
-        save_game_ptr->SaveGame::save_game(Object::cast_to<Level>(get_parent())->get_game_score());
         emit_signal("bird_died");
       }
       else
@@ -89,7 +85,7 @@ void Bird::deactivate_pipe_destroyer(float scale_multiplier)
   scale_tween->tween_property(this, "scale", get_scale() / scale_multiplier, 1);
 }
 
-void Bird::increase_bird_movespeed() {}
+void Bird::change_bird_difficulty(DifficultyManager::DifficultyStage stage) { m_speed = m_bird_speed_array [stage]; }
 
 void Bird::rotate_sprite() {}
 
@@ -97,6 +93,12 @@ void Bird::_bind_methods()
 {
   ADD_SIGNAL(MethodInfo("bird_died"));
   ADD_SIGNAL(MethodInfo("toggle_invincibility_label"));
+
+  ClassDB::bind_method(D_METHOD("change_bird_difficulty", "difficulty_stage"), &Bird::change_bird_difficulty);
+
+  ClassDB::bind_method(D_METHOD("get_speed_array"), &Bird::get_speed_array);
+  ClassDB::bind_method(D_METHOD("set_speed_array", "speed_array"), &Bird::set_speed_array);
+  ADD_PROPERTY(PropertyInfo(Variant::PACKED_FLOAT32_ARRAY, "move_speed_array"), "set_speed_array", "get_speed_array");
 
   ClassDB::bind_method(D_METHOD("get_speed"), &Bird::get_speed);
   ClassDB::bind_method(D_METHOD("set_speed", "p_speed"), &Bird::set_speed);
@@ -134,6 +136,9 @@ void Bird::_bind_methods()
   ClassDB::bind_method(D_METHOD("set_pipe_destroyer", "p_pipe_destroyer"), &Bird::set_pipe_destroyer);
   ADD_PROPERTY(PropertyInfo(Variant::BOOL, "pipe destroyer"), "set_pipe_destroyer", "get_pipe_destroyer");
 }
+
+void Bird::set_speed_array(const godot::PackedFloat32Array speed_array) { m_bird_speed_array = speed_array; }
+PackedFloat32Array Bird::get_speed_array() const { return m_bird_speed_array; }
 
 void Bird::set_speed(const float p_speed) { m_speed = p_speed; }
 float Bird::get_speed() const { return m_speed; }

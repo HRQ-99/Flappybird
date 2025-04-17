@@ -5,6 +5,7 @@
 #include "base_powerups.h"
 #include "bird.h"
 #include "boost_trail.h"
+#include "difficulty_manager.h"
 #include "level.h"
 #include "options_menu.h"
 #include "pipe_destroyer.h"
@@ -29,6 +30,7 @@ void initialize_module(ModuleInitializationLevel p_level)
   GDREGISTER_RUNTIME_CLASS(OptionsMenu);
   GDREGISTER_RUNTIME_CLASS(UserConfig);
   GDREGISTER_RUNTIME_CLASS(SaveGame);
+  GDREGISTER_RUNTIME_CLASS(DifficultyManager);
 
   GDREGISTER_RUNTIME_CLASS(BasePowerUps);
   GDREGISTER_RUNTIME_CLASS(PowerUps);

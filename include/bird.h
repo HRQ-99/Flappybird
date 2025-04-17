@@ -1,5 +1,6 @@
 #pragma once
 
+#include "difficulty_manager.h"
 #include "godot_cpp/classes/character_body2d.hpp"
 
 class Bird : public godot::CharacterBody2D
@@ -18,7 +19,9 @@ class Bird : public godot::CharacterBody2D
   void activate_pipe_destroyer(float scale_multiplier);
   void deactivate_pipe_destroyer(float scale_multiplier);
 
-  void increase_bird_movespeed();
+  void change_bird_difficulty(DifficultyManager::DifficultyStage stage);
+  void set_speed_array(const godot::PackedFloat32Array speed_array);
+  godot::PackedFloat32Array get_speed_array() const;
 
   void set_speed(const float p_speed);
   float get_speed() const;
@@ -58,6 +61,17 @@ class Bird : public godot::CharacterBody2D
   bool m_invincible = false;
   bool m_shield_active = false;
   bool m_pipe_destroyer_active = false;
+
+  godot::PackedFloat32Array m_bird_speed_array = [] {
+    godot::PackedFloat32Array arr;
+    arr.append(80);
+    arr.append(85);
+    arr.append(90);
+    arr.append(95);
+    arr.append(100);
+    arr.append(110);
+    return arr;
+  }();
 
   static void rotate_sprite();
 

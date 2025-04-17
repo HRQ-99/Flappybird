@@ -8,15 +8,9 @@
 #include "godot_cpp/classes/rich_text_label.hpp"
 #include "godot_cpp/classes/scene_tree.hpp"
 #include "powerups.h"
+#include "save_game.h"
 
 using namespace godot;
-
-Level::~Level()
-{
-  // memdelete(m_powerups);
-  // memdelete(m_pipes_container);
-  // memdelete(m_powerups_container);
-}
 
 void Level::_ready()
 {
@@ -77,16 +71,30 @@ void Level::spawn_powerup()
 void Level::bird_died()
 {
   set_game_paused_state(true);
+  SaveGame* save_game_ptr = memnew(SaveGame);
+  save_game_ptr->SaveGame::save_game(m_score);
   Ref<PackedScene> end_screen_scene = ResourceLoader::get_singleton()->load(end_screen_scene_path);
   Node* end_screen = end_screen_scene->instantiate();
   end_screen->get_node<RichTextLabel>("Margin/VBox/ScoreLabel")->set_text("Score:" + String::num_int64(m_score));
   add_child(end_screen);
 }
 
+void Level::change_level_difficulty(DifficultyManager::DifficultyStage stage)
+{
+  move_pipe_distance = move_pipe_distance_array [stage];
+}
+
 void Level::_bind_methods()
 {
   ClassDB::bind_method(D_METHOD("spawn_powerup"), &Level::spawn_powerup);
   ClassDB::bind_method(D_METHOD("bird_died"), &Level::bird_died);
+  ClassDB::bind_method(D_METHOD("change_level_difficulty", "difficulty_stage"), &Level::change_level_difficulty);
+
+  ClassDB::bind_method(D_METHOD("get_move_pipe_distance_array"), &Level::get_move_pipe_distance_array);
+  ClassDB::bind_method(D_METHOD("set_move_pipe_distance_array", "move_distance_array"),
+                       &Level::set_move_pipe_distance_array);
+  ADD_PROPERTY(PropertyInfo(Variant::PACKED_FLOAT32_ARRAY, "move_pipe_distance_array"), "set_move_pipe_distance_array",
+               "get_move_pipe_distance_array");
 
   ClassDB::bind_method(D_METHOD("get_game_paused_state"), &Level::get_game_paused_state);
   ClassDB::bind_method(D_METHOD("set_game_paused_state", "game_paused"), &Level::set_game_paused_state);
@@ -99,6 +107,12 @@ void Level::_bind_methods()
   ClassDB::bind_method(D_METHOD("get_pipe_distance"), &Level::get_pipe_distance);
   ClassDB::bind_method(D_METHOD("set_pipe_distance", "pipe_distance"), &Level::set_pipe_distance);
   ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "pipe_distance"), "set_pipe_distance", "get_pipe_distance");
+}
+
+PackedFloat32Array Level::get_move_pipe_distance_array() const { return move_pipe_distance_array; }
+void Level::set_move_pipe_distance_array(const godot::PackedFloat32Array move_distance_array)
+{
+  move_pipe_distance_array = move_distance_array;
 }
 
 void Level::set_game_paused_state(bool game_paused)

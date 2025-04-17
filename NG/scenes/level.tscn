@@ -61,7 +61,16 @@ process_mode = 1
 wait_time = 20.0
 autostart = true
 
+[node name="DifficultyManager" type="DifficultyManager" parent="."]
+
+[node name="DifficultyTimer" type="Timer" parent="DifficultyManager"]
+wait_time = 50.0
+autostart = true
+
 [connection signal="changing_settins" from="Pause Screen" to="." method="changing_settings"]
 [connection signal="toggle_invincibility_label" from="Bird" to="." method="toggle_invincible_label"]
 [connection signal="timeout" from="ScoreTimer" to="." method="increase_score"]
 [connection signal="timeout" from="PowerUpSpawnTimer" to="." method="spawn_powerup"]
+[connection signal="change_bird_difficulty" from="DifficultyManager" to="Bird" method="change_bird_difficulty"]
+[connection signal="change_level_difficulty" from="DifficultyManager" to="." method="change_level_difficulty"]
+[connection signal="timeout" from="DifficultyManager/DifficultyTimer" to="DifficultyManager" method="increase_difficulty_stage"]

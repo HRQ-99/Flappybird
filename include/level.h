@@ -13,6 +13,11 @@ class Level : public godot::Node2D
   void _process(double delta) override;
 
   void bird_died();
+
+  void change_level_difficulty(DifficultyManager::DifficultyStage stage);
+  godot::PackedFloat32Array get_move_pipe_distance_array() const;
+  void set_move_pipe_distance_array(const godot::PackedFloat32Array move_distance_array);
+
   void set_game_paused_state(bool game_paused);
   bool get_game_paused_state() const;
 
@@ -30,11 +35,21 @@ class Level : public godot::Node2D
   int m_score = 0;
   float m_next_pipe_location = 450;
   float move_pipe_distance = 450;
+  godot::PackedFloat32Array move_pipe_distance_array = [] {
+    godot::PackedFloat32Array arr;
+    arr.append(450);
+    arr.append(435);
+    arr.append(420);
+    arr.append(400);
+    arr.append(375);
+    arr.append(350);
+
+    return arr;
+  }();
 
   const int max_pipes = 5;
   const godot::String end_screen_scene_path = "uid://kk7t04lsbu4m";
 
-  ~Level();
   void spawn_powerup();
 
  protected:
