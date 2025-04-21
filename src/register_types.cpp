@@ -2,6 +2,7 @@
 
 #include <gdextension_interface.h>
 
+#include "achievement_manager.h"
 #include "base_powerups.h"
 #include "bird.h"
 #include "boost_trail.h"
@@ -31,6 +32,7 @@ void initialize_module(ModuleInitializationLevel p_level)
   GDREGISTER_RUNTIME_CLASS(UserConfig);
   GDREGISTER_RUNTIME_CLASS(SaveGame);
   GDREGISTER_RUNTIME_CLASS(DifficultyManager);
+  GDREGISTER_RUNTIME_CLASS(AchievementManager);
 
   GDREGISTER_RUNTIME_CLASS(BasePowerUps);
   GDREGISTER_RUNTIME_CLASS(PowerUps);

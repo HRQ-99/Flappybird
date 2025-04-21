@@ -20,10 +20,17 @@ class UserConfig : public godot::Node
     EFFECTS_VOLUME
   };
 
-  // godot::Dictionary m_options =
-  // godot::Dictionary(godot::Dictionary(), godot::Variant::INT, godot::StringName("Options"), godot::Variant(),
-  // godot::Variant::STRING, godot::StringName("String"), godot::Variant());
-  godot::Dictionary m_options;
+  godot::Dictionary m_options = [] {
+    godot::Dictionary dict;
+    dict [FULLSCREEN] = "fullscreen";
+    dict [CUSTOM_CURSOR] = "custom_cursor";
+    dict [VSYNC] = "vsync";
+    dict [MASTER_VOLUME] = "master_volume";
+    dict [MUSIC_VOLUME] = "music_volume";
+    dict [EFFECTS_VOLUME] = "effects_volume";
+    return dict;
+  }();
+
   void _ready() override;
 
   void load_user_config();
@@ -35,7 +42,6 @@ class UserConfig : public godot::Node
   godot::ConfigFile* get_user_config();
 
  private:
-  UserConfig();
   ~UserConfig();
 
   godot::ConfigFile* config = memnew(godot::ConfigFile);

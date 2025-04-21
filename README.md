@@ -1,20 +1,18 @@
-## Godot-cpp template
-This is a very basic template for Godot 4.4 for C++.
+## Flappybird
+This is a simple clone of the popular game 'Flappybird'. This is written with Godot - 4.4(.1) using GDExtension in C++.
+I am planning on documenting this project, after I am done with it. 
 
 ## Contents
 - godot-cpp (-b 4.4) repo as a sub-module
-- Empty godot project
+- The game project
 - include directory for project headers
-- src directory for the code (has a basic register_types.cpp for binding classes)
+- src directory for the code
 - SCons (requires python) file for building
 
-## How to use the template
-
 ## Things to know
-1. The temporary name used is 'NEXTGAME', which is used for .gdextension file name, all linked libraries, and the entry symbol used for
-initiliasing the module (entry symbol is in .gdextension file and the method in `src/register_types.cpp`).
+1. I am not particulary familiar with neither Godot nor C++. As such there might be things that are sub-optimal or too convoluted unnecessarily.
 
-2. By default, 'compile_commands.json' is always generated (can be changed in `SConstruct`).
+2. There is a binary release, if you want to play or you can compile this project, using SCons(compiling takes a few mintutes coz of godot-cpp).
 
 3. By default, if `scons` command is used, your current platform is used for building. Can specify using `platform=<OS>`.
 

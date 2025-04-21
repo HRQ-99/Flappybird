@@ -10,6 +10,8 @@ script = ExtResource("1_iywne")
 
 [node name="UserConfig" type="UserConfig" parent="."]
 
+[node name="AchievementManager" type="AchievementManager" parent="."]
+
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -74,6 +76,7 @@ stream = ExtResource("2_yqjtg")
 autoplay = true
 bus = &"Music"
 
+[connection signal="check_level_achievements" from="." to="AchievementManager" method="check_level_achievements"]
 [connection signal="changing_settings" from="MainUI" to="." method="change_settings"]
 [connection signal="starting_level" from="MainUI" to="." method="starting_level"]
 [connection signal="pressed" from="MainUI/UI-Center/UI-VBox/StartButton" to="MainUI" method="_on_start_button_pressed"]

@@ -1,4 +1,16 @@
-[gd_scene load_steps=0 format=3 uid="uid://y5k5gf2bpf2p"]
+[gd_scene load_steps=5 format=3 uid="uid://y5k5gf2bpf2p"]
+
+[ext_resource type="Script" uid="uid://ceg82i1u501cr" path="res://achievements/achievement.gd" id="1_mlmu3"]
+[ext_resource type="Texture2D" uid="uid://dcsxuu3ni1tr1" path="res://icon.svg" id="2_7xlsg"]
+[ext_resource type="Texture2D" uid="uid://bmvf0av36wl86" path="res://art/UI-art/Button_1_hover.png" id="3_dq5c2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ow4i8"]
+texture = ExtResource("3_dq5c2")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+draw_center = false
 
 [node name="Achievement" type="HSplitContainer"]
 anchors_preset = 15
@@ -7,11 +19,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-dragger_visibility = 2
+theme_override_constants/separation = 4
+collapsed = true
+dragging_enabled = false
+script = ExtResource("1_mlmu3")
 
 [node name="Texture" type="TextureRect" parent="."]
 layout_mode = 2
+texture = ExtResource("2_7xlsg")
 
-[node name="Label" type="RichTextLabel" parent="."]
+[node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Name" type="RichTextLabel" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_ow4i8")
+
+[node name="AchivementText" type="RichTextLabel" parent="VBox"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

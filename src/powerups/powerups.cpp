@@ -4,27 +4,9 @@
 
 using namespace godot;
 
-PowerUps::PowerUps()
-{
-  initialise_members();
-  rng = memnew(RandomNumberGenerator);
-}
+PowerUps::PowerUps() { rng = memnew(RandomNumberGenerator); }
 
 PowerUps::~PowerUps() { memdelete(rng); }
-
-void PowerUps::initialise_members()
-{
-  powerups_scenes_path [SPEED_BOOST] = "uid://cgxa8yeutalpu";
-  powerups_scenes_path [SCORE_BOOST] = "uid://5e1h0515ot2h";
-  //  powerups_scenes_path [SHIELD] = "";
-  powerups_scenes_path [PIPE_DESTROYER] = "uid://bxpo0kcteytsv";
-  powerups_scenes_path [POWER_UP_SPAWN_BOOST] = "uid://coyndodm4v3l1";
-
-  powerups_enum_array.append(SPEED_BOOST);
-  powerups_enum_array.append(SCORE_BOOST);
-  powerups_enum_array.append(PIPE_DESTROYER);
-  powerups_enum_array.append(POWER_UP_SPAWN_BOOST);
-}
 
 String PowerUps::get_random_powerup()
 {
@@ -35,7 +17,6 @@ String PowerUps::get_random_powerup()
 
 void PowerUps::_bind_methods()
 {
-  ClassDB::bind_method(D_METHOD("initialise_static_members"), &PowerUps::initialise_members);
   ClassDB::bind_method(D_METHOD("get_random_powerup"), &PowerUps::get_random_powerup);
 
   ClassDB::bind_method(D_METHOD("get_powerups_scenes_path"), &PowerUps::get_powerups_scenes_path);

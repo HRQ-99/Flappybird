@@ -8,18 +8,6 @@
 
 using namespace godot;
 
-// Dictionary UserConfig::m_options;
-
-UserConfig::UserConfig()
-{
-  m_options [FULLSCREEN] = "fullscreen";
-  m_options [CUSTOM_CURSOR] = "custom_cursor";
-  m_options [VSYNC] = "vsync";
-  m_options [MASTER_VOLUME] = "master_volume";
-  m_options [MUSIC_VOLUME] = "music_volume";
-  m_options [EFFECTS_VOLUME] = "effects_volume";
-}
-
 UserConfig::~UserConfig()
 {
   m_options.clear();

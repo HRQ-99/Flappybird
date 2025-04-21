@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BaseAchievement" load_steps=3 format=3 uid="uid://dejxjh2fruujp"]
+
+[ext_resource type="Script" uid="uid://doswgilprvhas" path="res://achievements/achievement_resource.gd" id="1_nxtks"]
+[ext_resource type="Texture2D" uid="uid://dcsxuu3ni1tr1" path="res://icon.svg" id="2_uiguh"]
+
+[resource]
+script = ExtResource("1_nxtks")
+name = "Satanist"
+sprite = ExtResource("2_uiguh")
+text = "Find Hell."
+unlocked = false
+metadata/_custom_type_script = "uid://doswgilprvhas"

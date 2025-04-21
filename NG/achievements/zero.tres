@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BaseAchievement" load_steps=3 format=3 uid="uid://bm4r0d5ohosxy"]
+
+[ext_resource type="Script" uid="uid://doswgilprvhas" path="res://achievements/achievement_resource.gd" id="1_mappr"]
+[ext_resource type="Texture2D" uid="uid://dcsxuu3ni1tr1" path="res://icon.svg" id="2_ltxcm"]
+
+[resource]
+script = ExtResource("1_mappr")
+name = "Hero to Zero"
+sprite = ExtResource("2_ltxcm")
+text = "Die before passing a single pipe."
+unlocked = false
+metadata/_custom_type_script = "uid://doswgilprvhas"
