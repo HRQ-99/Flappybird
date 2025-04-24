@@ -10,8 +10,8 @@ class Bird : public godot::CharacterBody2D
  public:
   godot::Signal bird_died;
   godot::Signal toggle_invincibility_label;
+  godot::Signal pipe_destroyed;
 
-  void _ready() override;
   void _physics_process(double delta) override;
 
   void activate_shield();
@@ -25,6 +25,7 @@ class Bird : public godot::CharacterBody2D
 
   void set_speed(const float p_speed);
   float get_speed() const;
+  float get_final_speed() const;
 
   void set_fallspeed(const float p_fallspeed);
   float get_fallspeed() const;

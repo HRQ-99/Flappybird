@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://mbtl17frp3nx"]
+[gd_scene load_steps=5 format=3 uid="uid://mbtl17frp3nx"]
 
+[ext_resource type="Script" uid="uid://d8qbd4lcnuvl" path="res://scenes/achievement_popup.gd" id="1_g3gl2"]
 [ext_resource type="Texture2D" uid="uid://dcsxuu3ni1tr1" path="res://icon.svg" id="1_nkkgm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkkgm"]
@@ -17,9 +18,9 @@ expand_margin_bottom = 3.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nkkgm"]
 
 [node name="AchievementPopup" type="PopupPanel"]
+process_mode = 3
 disable_3d = true
-transparent_bg = false
-position = Vector2i(475, 0)
+position = Vector2i(500, 0)
 size = Vector2i(165, 40)
 visible = true
 always_on_top = true
@@ -27,6 +28,7 @@ transparent = false
 max_size = Vector2i(200, 40)
 content_scale_aspect = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_nkkgm")
+script = ExtResource("1_g3gl2")
 
 [node name="Split" type="HSplitContainer" parent="."]
 custom_minimum_size = Vector2(150, 0)
@@ -36,7 +38,7 @@ anchor_bottom = 1.0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 161.0
-offset_bottom = 310.0
+offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 dragging_enabled = false

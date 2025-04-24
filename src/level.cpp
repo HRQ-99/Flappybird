@@ -15,8 +15,6 @@ using namespace godot;
 void Level::_ready()
 {
   m_bird = get_node<Bird>("Bird");
-  m_game_paused = false;
-  m_score = 0;
 
   m_pipes_container = memnew(Node2D);
   m_pipes_container->set_name("Pipes Container");
@@ -43,6 +41,7 @@ void Level::_process(double delta)
   if (m_bird->get_global_position() [0] - location_x_first_pipe_pair > 1000)
   {
     first_pipe_pair->queue_free();
+    m_pipes_passed++;
 
     Node2D* pipe_pair = Object::cast_to<Node2D>(call("make_pipe_pair"));
     if (pipe_pair != nullptr)
@@ -79,6 +78,20 @@ void Level::bird_died()
   add_child(end_screen);
 }
 
+void Level::destroy_pipe(godot::Node* last_collision)
+{
+  m_pipes_destroyed++;
+  last_collision->queue_free();
+
+  Node2D* pipe_pair = Object::cast_to<Node2D>(call("make_pipe_pair"));
+  if (pipe_pair != nullptr)
+  {
+    m_pipes_container->add_child(pipe_pair);
+    pipe_pair->move_local_x(m_next_pipe_location);
+    m_next_pipe_location += move_pipe_distance;
+  }
+}
+
 void Level::change_level_difficulty(DifficultyManager::DifficultyStage stage)
 {
   move_pipe_distance = move_pipe_distance_array [stage];
@@ -88,6 +101,7 @@ void Level::_bind_methods()
 {
   ClassDB::bind_method(D_METHOD("spawn_powerup"), &Level::spawn_powerup);
   ClassDB::bind_method(D_METHOD("bird_died"), &Level::bird_died);
+  ClassDB::bind_method(D_METHOD("destroy_pipe", "last_collision"), &Level::destroy_pipe);
   ClassDB::bind_method(D_METHOD("change_level_difficulty", "difficulty_stage"), &Level::change_level_difficulty);
 
   ClassDB::bind_method(D_METHOD("get_move_pipe_distance_array"), &Level::get_move_pipe_distance_array);
@@ -107,6 +121,14 @@ void Level::_bind_methods()
   ClassDB::bind_method(D_METHOD("get_pipe_distance"), &Level::get_pipe_distance);
   ClassDB::bind_method(D_METHOD("set_pipe_distance", "pipe_distance"), &Level::set_pipe_distance);
   ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "pipe_distance"), "set_pipe_distance", "get_pipe_distance");
+
+  ClassDB::bind_method(D_METHOD("get_pipes_passed"), &Level::get_pipes_passed);
+  ClassDB::bind_method(D_METHOD("set_pipes_passed", "score"), &Level::set_pipes_passed);
+  ADD_PROPERTY(PropertyInfo(Variant::INT, "pipes_passed"), "set_pipes_passed", "get_pipes_passed");
+
+  ClassDB::bind_method(D_METHOD("get_pipes_destroyed"), &Level::get_pipes_destroyed);
+  ClassDB::bind_method(D_METHOD("set_pipes_destroyed", "score"), &Level::set_pipes_destroyed);
+  ADD_PROPERTY(PropertyInfo(Variant::INT, "pipes_destroyed"), "set_pipes_destroyed", "get_pipes_destroyed");
 }
 
 PackedFloat32Array Level::get_move_pipe_distance_array() const { return move_pipe_distance_array; }
@@ -128,3 +150,9 @@ int Level::get_game_score() const { return m_score; }
 
 void Level::set_pipe_distance(float pipe_distance) { move_pipe_distance = pipe_distance; }
 float Level::get_pipe_distance() const { return move_pipe_distance; }
+
+void Level::set_pipes_passed(int pipes_passed) { m_pipes_passed = pipes_passed; }
+int Level::get_pipes_passed() const { return m_pipes_passed; }
+
+void Level::set_pipes_destroyed(int pipes_destroyed) { m_pipes_destroyed = pipes_destroyed; }
+int Level::get_pipes_destroyed() const { return m_pipes_destroyed; }

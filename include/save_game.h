@@ -12,7 +12,10 @@ class SaveGame : public godot::Resource
 
   void save_game(float game_score);
   static godot::Dictionary initialising_achievements(AchievementManager *achievement_manager);
-  static void achievement_unlocked(AchievementManager *achievement_manager, AchievementManager::Achievements achievement_enum);
+  static void achievement_unlocked(AchievementManager *achievement_manager,
+                                   AchievementManager::Achievements achievement_enum);
+
+  static bool check_attempt_100();
 
  private:
   godot::Array m_attempt_number;

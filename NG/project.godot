@@ -44,6 +44,7 @@ project/assembly_name="Flappybird"
 
 ActivatedPowerUp=""
 Level=""
+Bird=""
 
 [gui]
 

@@ -3,18 +3,8 @@
 #include "godot_cpp/classes/input.hpp"
 #include "godot_cpp/classes/property_tweener.hpp"
 #include "godot_cpp/classes/tween.hpp"
-#include "level.h"
 
 using namespace godot;
-
-void Bird::_ready()
-{
-  m_invincible = false;
-  m_gravity_multiplier = 1;
-  m_speed_multiplier = 1;
-
-  connect("bird_died", Callable(Object::cast_to<Level>(get_parent()), "bird_died"));
-}
 
 void Bird::_physics_process(double delta)
 {
@@ -35,20 +25,20 @@ void Bird::_physics_process(double delta)
 
   int collision_count = get_slide_collision_count();
 
-  if (!m_invincible && collision_count > 0)
+  if (collision_count > 0)
   {
     Node *last_collision = cast_to<Node>(get_last_slide_collision()->get_collider());
 
     if ((last_collision->get_name()) != (String) "Boundary")
     {
-      if (!m_pipe_destroyer_active)
+      if (!m_invincible && !m_pipe_destroyer_active)
       {
         set_process_mode(PROCESS_MODE_DISABLED);
         emit_signal("bird_died");
       }
-      else
+      else if (m_pipe_destroyer_active)
       {
-        last_collision->queue_free();
+        emit_signal("pipe_destroyed", last_collision);
       }
     }
   }
@@ -93,6 +83,7 @@ void Bird::_bind_methods()
 {
   ADD_SIGNAL(MethodInfo("bird_died"));
   ADD_SIGNAL(MethodInfo("toggle_invincibility_label"));
+  ADD_SIGNAL(MethodInfo("pipe_destroyed", PropertyInfo(Variant::OBJECT, "last_collision")));
 
   ClassDB::bind_method(D_METHOD("change_bird_difficulty", "difficulty_stage"), &Bird::change_bird_difficulty);
 
@@ -102,6 +93,7 @@ void Bird::_bind_methods()
 
   ClassDB::bind_method(D_METHOD("get_speed"), &Bird::get_speed);
   ClassDB::bind_method(D_METHOD("set_speed", "p_speed"), &Bird::set_speed);
+  ClassDB::bind_method(D_METHOD("get_final_speed"), &Bird::get_final_speed);
   ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "speed"), "set_speed", "get_speed");
 
   ClassDB::bind_method(D_METHOD("get_fallspeed"), &Bird::get_fallspeed);
@@ -142,6 +134,7 @@ PackedFloat32Array Bird::get_speed_array() const { return m_bird_speed_array; }
 
 void Bird::set_speed(const float p_speed) { m_speed = p_speed; }
 float Bird::get_speed() const { return m_speed; }
+float Bird::get_final_speed() const { return m_speed * m_speed_multiplier; }
 
 void Bird::set_fallspeed(const float p_fallspeed) { m_fallspeed = p_fallspeed; }
 float Bird::get_fallspeed() const { return m_fallspeed; }

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BaseAchievement" load_steps=3 format=3 uid="uid://bkx7he3jn1xt8"]
+[gd_resource type="Resource" script_class="BaseAchievement" load_steps=3 format=3 uid="uid://c6gsw57y27n3b"]
 
 [ext_resource type="Script" uid="uid://doswgilprvhas" path="res://achievements/achievement_resource.gd" id="1_e5vsv"]
 [ext_resource type="Texture2D" uid="uid://dcsxuu3ni1tr1" path="res://icon.svg" id="2_7upeu"]

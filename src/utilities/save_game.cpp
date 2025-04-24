@@ -31,8 +31,6 @@ void SaveGame::save_game(float game_score)
   save_file->m_game_score.append((int)game_score);
 
   ResourceSaver::get_singleton()->save(save_file, SAVE_DIRE);
-
-  // memdelete(save_file);
 }
 
 Dictionary SaveGame::initialising_achievements(AchievementManager *achievement_manager)
@@ -68,11 +66,27 @@ void SaveGame::achievement_unlocked(AchievementManager *achievement_manager,
   initialising_achievements(achievement_manager);
 }
 
+bool SaveGame::check_attempt_100()
+{
+  const String SAVE_DIRE = "user://savegame.tres";
+  if (FileAccess::file_exists(SAVE_DIRE))
+  {
+    Ref<SaveGame> save_file = ResourceLoader::get_singleton()->load(SAVE_DIRE);
+    if (save_file->get_attempt_number().size() >= 5)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
 void SaveGame::_bind_methods()
 {
   ClassDB::bind_method(godot::D_METHOD("save_game", "game_score"), &SaveGame::save_game);
   ClassDB::bind_static_method("SaveGame", D_METHOD("initialising_achievements", "achievement_manager"),
                               &SaveGame::initialising_achievements);
+
+  ClassDB::bind_static_method("SaveGame", D_METHOD("check_attempt_100"), &SaveGame::check_attempt_100);
 
   ClassDB::bind_method(D_METHOD("get_attempt_number"), &SaveGame::get_attempt_number);
   ClassDB::bind_method(D_METHOD("set_attempt_number", "value"), &SaveGame::set_attempt_number);

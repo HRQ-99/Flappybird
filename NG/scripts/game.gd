@@ -23,6 +23,7 @@ func restart_level() -> void:
   get_tree().get_first_node_in_group("Level").queue_free()
   var lvl:Level=level_scene.instantiate()
   add_child(lvl)
+  check_level_achievements.emit()
   
 func change_settings()->void:
   $MainUI.visible= not $MainUI.visible

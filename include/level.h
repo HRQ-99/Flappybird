@@ -13,6 +13,7 @@ class Level : public godot::Node2D
   void _process(double delta) override;
 
   void bird_died();
+  void destroy_pipe(godot::Node* last_collision);
 
   void change_level_difficulty(DifficultyManager::DifficultyStage stage);
   godot::PackedFloat32Array get_move_pipe_distance_array() const;
@@ -27,6 +28,12 @@ class Level : public godot::Node2D
   void set_pipe_distance(float pipe_distance);
   float get_pipe_distance() const;
 
+  void set_pipes_passed(int pipes_passed);
+  int get_pipes_passed() const;
+
+  void set_pipes_destroyed(int pipes_destroyed);
+  int get_pipes_destroyed() const;
+
  private:
   Bird* m_bird;
   PowerUps* m_powerups = nullptr;
@@ -35,6 +42,8 @@ class Level : public godot::Node2D
   int m_score = 0;
   float m_next_pipe_location = 450;
   float move_pipe_distance = 450;
+  int m_pipes_passed = 0;
+  int m_pipes_destroyed = 0;
   godot::PackedFloat32Array move_pipe_distance_array = [] {
     godot::PackedFloat32Array arr;
     arr.append(450);

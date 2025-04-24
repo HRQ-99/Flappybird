@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwhmyaen74sbb"]
+[gd_scene load_steps=8 format=3 uid="uid://cwhmyaen74sbb"]
 
 [ext_resource type="Script" uid="uid://dvdq02i1dk4rg" path="res://scripts/level.gd" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://bos3yfn3v2b7m" path="res://scenes/pause_screen.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://gjviwon5blic" path="res://scenes/bird.tscn" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://cgxa8yeutalpu" path="res://scenes/powerups/speed_boost.tscn" id="5_2r41h"]
+[ext_resource type="PackedScene" uid="uid://bxpo0kcteytsv" path="res://scenes/powerups/pipe_destroyer.tscn" id="5_ppgk2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mx8sn"]
 
@@ -67,7 +69,17 @@ autostart = true
 wait_time = 50.0
 autostart = true
 
+[node name="PipeDestroyer" parent="." instance=ExtResource("5_ppgk2")]
+position = Vector2(307, -322)
+scale = Vector2(0.1, 0.1)
+
+[node name="SpeedBoost" parent="." instance=ExtResource("5_2r41h")]
+position = Vector2(640, 169)
+scale = Vector2(0.1, 0.1)
+
 [connection signal="changing_settins" from="Pause Screen" to="." method="changing_settings"]
+[connection signal="bird_died" from="Bird" to="." method="bird_died"]
+[connection signal="pipe_destroyed" from="Bird" to="." method="destroy_pipe"]
 [connection signal="toggle_invincibility_label" from="Bird" to="." method="toggle_invincible_label"]
 [connection signal="timeout" from="ScoreTimer" to="." method="increase_score"]
 [connection signal="timeout" from="PowerUpSpawnTimer" to="." method="spawn_powerup"]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BaseAchievement" load_steps=3 format=3 uid="uid://dxhi3d6wsxtvx"]
+[gd_resource type="Resource" script_class="BaseAchievement" load_steps=3 format=3 uid="uid://t2r77785emd5"]
 
 [ext_resource type="Script" uid="uid://doswgilprvhas" path="res://achievements/achievement_resource.gd" id="1_4sjql"]
 [ext_resource type="Texture2D" uid="uid://dcsxuu3ni1tr1" path="res://icon.svg" id="2_j88q8"]
@@ -7,6 +7,6 @@
 script = ExtResource("1_4sjql")
 name = "Addicted"
 sprite = ExtResource("2_j88q8")
-text = "Play at least 100 runs."
+text = "Complete at least 100 runs."
 unlocked = false
 metadata/_custom_type_script = "uid://doswgilprvhas"

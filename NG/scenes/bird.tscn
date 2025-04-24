@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cu57srl6p8bit" path="res://art/Bird.png" id="1_kqhkv"]
 
-[node name="Bird" type="Bird"]
+[node name="Bird" type="Bird" groups=["Bird"]]
 process_mode = 1
 collision_mask = 6
 

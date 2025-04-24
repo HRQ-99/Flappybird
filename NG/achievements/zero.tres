@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_mappr")
-name = "Hero to Zero"
+name = "Really!"
 sprite = ExtResource("2_ltxcm")
 text = "Die before passing a single pipe."
 unlocked = false

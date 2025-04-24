@@ -1,8 +1,5 @@
 extends Level
 
-const level_scene_path:String = "uid://cwhmyaen74sbb"
-const level_scene:PackedScene = preload(level_scene_path)
-
 const pipe_scene_path:String = "uid://b3bholrqdxicg"
 const pipe_scene:PackedScene = preload(pipe_scene_path)
 
@@ -23,14 +20,6 @@ func make_pipe_pair()->Node2D:
   pipe_pair.scale=Vector2(4,5)
 
   return pipe_pair
-
-func restart_level()->void:
-  pass
-  #get_tree().paused=false
-  #var lvl:Level=level_scene.instantiate()
-  #get_tree().current_scene.add_child(lvl)
-  #queue_free()
-  #call_deferred("queue_free")
   
 func increase_score() -> void:
   score+=1
@@ -39,10 +28,8 @@ func increase_score() -> void:
 func toggle_invincible_label()->void:
   $"Level-UI/HBox/Godmode".visible = !$"Level-UI/HBox/Godmode".visible
 
-
 func changing_settings() -> void:
   var opts=options.instantiate() as OptionsMenu
-  #opts.size=DisplayServer.window_get_size_with_decorations()
   opts.current_context=OptionsMenu.LEVEL
   get_parent().add_child(opts)
   
