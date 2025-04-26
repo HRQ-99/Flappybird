@@ -19,6 +19,7 @@ void SpeedBoost::activate_power(Node2D* body_entered)
   m_bird->set_speed_multiplier(m_bird->get_speed_multiplier() * m_speed_multiplier);
   m_bird->set_gravity_multiplier(m_bird->get_gravity_multiplier() * m_gravity_multiplier);
   m_bird->set_invincibility(m_invincible);
+  m_bird->apply_camera_effect(m_power_duration);
 
   m_timer->start();
 }

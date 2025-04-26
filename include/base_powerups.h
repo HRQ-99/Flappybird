@@ -17,7 +17,6 @@ class BasePowerUps : public godot::Area2D
 
   virtual void activate_power(Node2D* body_entered);
   virtual void power_expired();
-  void music_fade(Node2D* body_entered);
   void pre_activation();
   void despawn();
 

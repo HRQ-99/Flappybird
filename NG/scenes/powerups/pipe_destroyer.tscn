@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxpo0kcteytsv"]
+[gd_scene load_steps=6 format=3 uid="uid://bxpo0kcteytsv"]
 
 [ext_resource type="Shader" uid="uid://c7qmqbu03u643" path="res://shaders/PowerUps.gdshader" id="1_mlwoj"]
 [ext_resource type="Texture2D" uid="uid://b0mjos0f6opht" path="res://art/bomb.png" id="2_mlwoj"]
 [ext_resource type="AudioStream" uid="uid://bhwjgoal7r3ya" path="res://sound/effects/speedBoostSoundEffect_2.mp3" id="3_ruu83"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_i85x7"]
-radius = 1700.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rybe0"]
 shader = ExtResource("1_mlwoj")
@@ -16,12 +13,6 @@ height = 1210.0
 
 [node name="PipeDestroyer" type="PipeDestroyer"]
 power_duration = 12.0
-
-[node name="MusicFadeArea" type="Area2D" parent="."]
-collision_layer = 8
-
-[node name="FadeHitbox" type="CollisionShape2D" parent="MusicFadeArea"]
-shape = SubResource("CircleShape2D_i85x7")
 
 [node name="BoostSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_rybe0")

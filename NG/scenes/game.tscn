@@ -71,10 +71,12 @@ focus_previous = NodePath("../AchievementsButton")
 theme_override_font_sizes/font_size = 24
 text = "Exit"
 
-[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("2_yqjtg")
 autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [connection signal="check_level_achievements" from="." to="AchievementManager" method="check_level_achievements"]
 [connection signal="changing_settings" from="MainUI" to="." method="change_settings"]

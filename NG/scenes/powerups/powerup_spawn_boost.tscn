@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://coyndodm4v3l1"]
+[gd_scene load_steps=6 format=3 uid="uid://coyndodm4v3l1"]
 
 [ext_resource type="Shader" uid="uid://c7qmqbu03u643" path="res://shaders/PowerUps.gdshader" id="1_4au7j"]
 [ext_resource type="Texture2D" uid="uid://dvvtx0w14p13k" path="res://art/lightning.png" id="2_tvy4d"]
 [ext_resource type="AudioStream" uid="uid://bhwjgoal7r3ya" path="res://sound/effects/speedBoostSoundEffect_2.mp3" id="3_tvy4d"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_04lhq"]
-radius = 1700.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2g11i"]
 shader = ExtResource("1_4au7j")
@@ -17,11 +14,6 @@ height = 1196.0
 [node name="PowerUpSpawnBoost" type="PowerUpSpawnBoost"]
 power_duration = 25.0
 collision_layer = 8
-
-[node name="MusicFadeArea" type="Area2D" parent="."]
-
-[node name="FadeHitbox" type="CollisionShape2D" parent="MusicFadeArea"]
-shape = SubResource("CircleShape2D_04lhq")
 
 [node name="BoostSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2g11i")

@@ -9,7 +9,6 @@
 #include "godot_cpp/classes/scene_tree.hpp"
 #include "godot_cpp/classes/scene_tree_timer.hpp"
 #include "godot_cpp/classes/texture_rect.hpp"
-#include "godot_cpp/classes/worker_thread_pool.hpp"
 #include "level.h"
 #include "save_game.h"
 

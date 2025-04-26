@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://5e1h0515ot2h"]
+[gd_scene load_steps=6 format=3 uid="uid://5e1h0515ot2h"]
 
 [ext_resource type="Texture2D" uid="uid://co7wphui4h7sm" path="res://art/PowerUps/scoreBoostPowerUp.png" id="1_fo1ba"]
 [ext_resource type="Shader" uid="uid://c7qmqbu03u643" path="res://shaders/PowerUps.gdshader" id="1_j1x08"]
 [ext_resource type="AudioStream" uid="uid://bhwjgoal7r3ya" path="res://sound/effects/speedBoostSoundEffect_2.mp3" id="3_it6yb"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_j2xaq"]
-radius = 1700.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_it6yb"]
 shader = ExtResource("1_j1x08")
@@ -16,12 +13,6 @@ radius = 700.0
 [node name="ScoreBoost" type="ScoreBoost"]
 power_duration = 20.0
 collision_layer = 8
-
-[node name="MusicFadeArea" type="Area2D" parent="."]
-collision_layer = 8
-
-[node name="FadeHitbox" type="CollisionShape2D" parent="MusicFadeArea"]
-shape = SubResource("CircleShape2D_j2xaq")
 
 [node name="BoostSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_it6yb")

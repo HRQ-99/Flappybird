@@ -1,5 +1,6 @@
 #include "bird.h"
 
+#include "godot_cpp/classes/camera2d.hpp"
 #include "godot_cpp/classes/input.hpp"
 #include "godot_cpp/classes/property_tweener.hpp"
 #include "godot_cpp/classes/tween.hpp"
@@ -48,6 +49,21 @@ void Bird::_physics_process(double delta)
     set_invincibility(!m_invincible);
     emit_signal("toggle_invincibility_label");
   }
+}
+
+void Bird::apply_camera_effect(float power_duration)
+{
+  Ref<Tween> tween = create_tween();
+  Camera2D *camera = get_node<Camera2D>("Camera");
+  const float og_pixel_smoothing = camera->get_position_smoothing_speed();
+  const Vector2 og_offset = camera->get_offset();
+  const float zoom_duration_half = 0.25;
+  const float smoothing_duration_half = (power_duration - zoom_duration_half) / 2;
+
+  tween->tween_property(camera, "zoom", Vector2(0.8, 0.8), zoom_duration_half);
+  tween->tween_property(camera, "position_smoothing_speed", 2, smoothing_duration_half);
+  tween->tween_property(camera, "position_smoothing_speed", og_pixel_smoothing, smoothing_duration_half);
+  tween->tween_property(camera, "zoom", Vector2(1, 1), zoom_duration_half);
 }
 
 void Bird::activate_shield()

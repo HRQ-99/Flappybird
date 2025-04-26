@@ -74,7 +74,7 @@ position = Vector2(307, -322)
 scale = Vector2(0.1, 0.1)
 
 [node name="SpeedBoost" parent="." instance=ExtResource("5_2r41h")]
-position = Vector2(640, 169)
+position = Vector2(579, 174)
 scale = Vector2(0.1, 0.1)
 
 [connection signal="changing_settins" from="Pause Screen" to="." method="changing_settings"]

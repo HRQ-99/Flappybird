@@ -14,6 +14,7 @@ class Bird : public godot::CharacterBody2D
 
   void _physics_process(double delta) override;
 
+  void apply_camera_effect(float power_duration);
   void activate_shield();
   void deactivate_shield();
   void activate_pipe_destroyer(float scale_multiplier);
