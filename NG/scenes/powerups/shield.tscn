@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4diibrcpf0v5"]
+
+[ext_resource type="Texture2D" uid="uid://4ybu3lt2xhl2" path="res://art/PowerUps/Shield.png" id="1_8ib2o"]
+[ext_resource type="Shader" uid="uid://c7qmqbu03u643" path="res://shaders/PowerUps.gdshader" id="1_m73dm"]
+[ext_resource type="AudioStream" uid="uid://bhwjgoal7r3ya" path="res://sound/effects/speedBoostSoundEffect_2.mp3" id="3_anhtm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_anhtm"]
+shader = ExtResource("1_m73dm")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukwma"]
+radius = 130.0
+height = 446.0
+
+[node name="Shield" type="Shield"]
+power_duration = 30.0
+
+[node name="BoostSprite" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.670588)
+material = SubResource("ShaderMaterial_anhtm")
+texture = ExtResource("1_8ib2o")
+
+[node name="BoostHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(3, 0)
+shape = SubResource("CapsuleShape2D_ukwma")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+
+[node name="Effect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_anhtm")
+bus = &"Music"
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 45.0
+autostart = true

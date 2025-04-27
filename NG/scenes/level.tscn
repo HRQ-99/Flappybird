@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwhmyaen74sbb"]
+[gd_scene load_steps=7 format=3 uid="uid://cwhmyaen74sbb"]
 
 [ext_resource type="Script" uid="uid://dvdq02i1dk4rg" path="res://scripts/level.gd" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://bos3yfn3v2b7m" path="res://scenes/pause_screen.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://gjviwon5blic" path="res://scenes/bird.tscn" id="3_w8frs"]
-[ext_resource type="PackedScene" uid="uid://cgxa8yeutalpu" path="res://scenes/powerups/speed_boost.tscn" id="5_2r41h"]
-[ext_resource type="PackedScene" uid="uid://bxpo0kcteytsv" path="res://scenes/powerups/pipe_destroyer.tscn" id="5_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://c4diibrcpf0v5" path="res://scenes/powerups/shield.tscn" id="6_2r41h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mx8sn"]
 
@@ -60,7 +59,6 @@ autostart = true
 
 [node name="PowerUpSpawnTimer" type="Timer" parent="."]
 process_mode = 1
-wait_time = 20.0
 autostart = true
 
 [node name="DifficultyManager" type="DifficultyManager" parent="."]
@@ -69,13 +67,9 @@ autostart = true
 wait_time = 50.0
 autostart = true
 
-[node name="PipeDestroyer" parent="." instance=ExtResource("5_ppgk2")]
-position = Vector2(307, -322)
-scale = Vector2(0.1, 0.1)
-
-[node name="SpeedBoost" parent="." instance=ExtResource("5_2r41h")]
-position = Vector2(579, 174)
-scale = Vector2(0.1, 0.1)
+[node name="Shield" parent="." instance=ExtResource("6_2r41h")]
+position = Vector2(268, 148)
+scale = Vector2(0.3, 0.3)
 
 [connection signal="changing_settins" from="Pause Screen" to="." method="changing_settings"]
 [connection signal="bird_died" from="Bird" to="." method="bird_died"]

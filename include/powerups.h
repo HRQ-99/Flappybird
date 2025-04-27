@@ -17,7 +17,7 @@ class PowerUps : public godot::Resource
     SCORE_BOOST,
     PIPE_DESTROYER,
     POWER_UP_SPAWN_BOOST,
-    // SHIELD,
+    SHIELD,
     //  GUIDE,
   };
 
@@ -27,6 +27,7 @@ class PowerUps : public godot::Resource
     arr.append(SCORE_BOOST);
     arr.append(PIPE_DESTROYER);
     arr.append(POWER_UP_SPAWN_BOOST);
+    arr.append(SHIELD);
     return arr;
   }();
 
@@ -34,7 +35,7 @@ class PowerUps : public godot::Resource
     godot::Dictionary dict;
     dict [SPEED_BOOST] = "uid://cgxa8yeutalpu";
     dict [SCORE_BOOST] = "uid://5e1h0515ot2h";
-    //  dict [SHIELD] = "";
+    dict [SHIELD] = "uid://c4diibrcpf0v5";
     dict [PIPE_DESTROYER] = "uid://bxpo0kcteytsv";
     dict [POWER_UP_SPAWN_BOOST] = "uid://coyndodm4v3l1";
     return dict;

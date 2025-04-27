@@ -14,6 +14,7 @@
 #include "powerups.h"
 #include "save_game.h"
 #include "score_boost.h"
+#include "shield_powerup.h"
 #include "speed_boost.h"
 #include "user_config.h"
 
@@ -40,6 +41,7 @@ void initialize_module(ModuleInitializationLevel p_level)
   GDREGISTER_RUNTIME_CLASS(ScoreBoost);
   GDREGISTER_RUNTIME_CLASS(PowerUpSpawnBoost);
   GDREGISTER_RUNTIME_CLASS(PipeDestroyer);
+  GDREGISTER_RUNTIME_CLASS(Shield);
 
   GDREGISTER_RUNTIME_CLASS(BoostTrail);
 }

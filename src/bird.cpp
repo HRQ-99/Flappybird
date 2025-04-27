@@ -41,6 +41,10 @@ void Bird::_physics_process(double delta)
       {
         emit_signal("pipe_destroyed", last_collision);
       }
+      else if (m_shield_active)
+      {
+        emit_signal("pipe_destroyed", last_collision);
+      }
     }
   }
 
@@ -66,14 +70,9 @@ void Bird::apply_camera_effect(float power_duration)
   tween->tween_property(camera, "zoom", Vector2(1, 1), zoom_duration_half);
 }
 
-void Bird::activate_shield()
+void Bird::deactivate_shield(Node2D *last_collision)
 {
-  set_shield(true);
-  set_invincibility(true);
-}
-
-void Bird::deactivate_shield()
-{
+  emit_signal("pipe_destroyed", last_collision);
   set_shield(false);
   set_invincibility(false);
 }
@@ -102,6 +101,7 @@ void Bird::_bind_methods()
   ADD_SIGNAL(MethodInfo("pipe_destroyed", PropertyInfo(Variant::OBJECT, "last_collision")));
 
   ClassDB::bind_method(D_METHOD("change_bird_difficulty", "difficulty_stage"), &Bird::change_bird_difficulty);
+  ClassDB::bind_method(D_METHOD("deactivate_shield", "last_collision"), &Bird::deactivate_shield);
 
   ClassDB::bind_method(D_METHOD("get_speed_array"), &Bird::get_speed_array);
   ClassDB::bind_method(D_METHOD("set_speed_array", "speed_array"), &Bird::set_speed_array);
