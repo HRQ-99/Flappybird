@@ -148,15 +148,17 @@ void AchievementManager::delay_check_powerups()
 
 void AchievementManager::check_afk()
 {
-  add_user_signal(m_restart_afk_signal_name);
-
   Timer* afk_timer = memnew(Timer);
   afk_timer->set_wait_time(5);
   afk_timer->set_one_shot(true);
   afk_timer->set_autostart(true);
   get_parent()->call_deferred("add_child", afk_timer);
   afk_timer->connect("timeout", Callable(this, "unlock_achievement").bind(AFK));
-  connect(m_restart_afk_signal_name, Callable(this, m_restart_afk_signal_name).bind(afk_timer));
+  if (!has_user_signal(m_restart_afk_signal_name))
+  {
+    add_user_signal(m_restart_afk_signal_name);
+    connect(m_restart_afk_signal_name, Callable(this, m_restart_afk_signal_name).bind(afk_timer));
+  }
 }
 
 void AchievementManager::restart_afk(Timer* afk_timer) { afk_timer->start(); }
