@@ -6,7 +6,9 @@ var achievements:Array=[]
 
 func _ready() -> void:
   var dir:DirAccess=DirAccess.open(achieves_dir)
-  
+
+  var achievement_status:Dictionary=get_tree().current_scene.get_node("AchievementManager").call("get_achievements_unlock_status")
+
   dir.list_dir_begin()
   var file_name:String =dir.get_next()
   while(file_name!=""):
@@ -15,6 +17,8 @@ func _ready() -> void:
       var file_path:String=achieves_dir+file_name
       var achievement:BaseAchievement=load(file_path)
       if (achievement):
+        if(achievement_status[achievement.enum_id]):
+          achievement.unlocked=true
         achievements.append(achievement)
         
     file_name=dir.get_next()

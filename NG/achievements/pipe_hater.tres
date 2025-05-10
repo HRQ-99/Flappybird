@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_npghp")
 name = "Pipe Hater"
+enum_id = 3
 sprite = ExtResource("2_b00ah")
 text = "Destroy at least 50 pipes in a single run."
 unlocked = false

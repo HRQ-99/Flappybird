@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_e5vsv")
 name = "Beethoven's biggest fan"
+enum_id = 2
 sprite = ExtResource("2_7upeu")
 text = "Listen to music for 30 minutes without playing."
 unlocked = false

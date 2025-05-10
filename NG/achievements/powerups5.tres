@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_ipnte")
 name = "Powerful"
+enum_id = 4
 sprite = ExtResource("2_imtm7")
 text = "Have at least 5 powerups active at once."
 unlocked = false

@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_1e8rm")
 name = "AFK"
+enum_id = 5
 sprite = ExtResource("2_g3fdy")
 text = "Survive without flapping for 5 seconds."
 unlocked = false

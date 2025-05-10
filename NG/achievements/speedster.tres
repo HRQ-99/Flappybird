@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_h6xjn")
 name = "Speedster"
+enum_id = 6
 sprite = ExtResource("2_ag6iw")
 text = "Outrun the camera."
 unlocked = false

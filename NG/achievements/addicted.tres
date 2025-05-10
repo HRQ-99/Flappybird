@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_4sjql")
 name = "Addicted"
+enum_id = 1
 sprite = ExtResource("2_j88q8")
 text = "Complete at least 100 runs."
 unlocked = false

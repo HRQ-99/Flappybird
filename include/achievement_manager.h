@@ -3,6 +3,8 @@
 #include "godot_cpp/classes/node.hpp"
 #include "godot_cpp/classes/resource.hpp"
 #include "godot_cpp/classes/timer.hpp"
+#include "godot_cpp/variant/dictionary.hpp"
+#include "godot_cpp/variant/string.hpp"
 
 class AchievementManager : public godot::Node
 {
@@ -38,10 +40,12 @@ class AchievementManager : public godot::Node
   godot::Array get_achievements_enum_array();
   void set_achievements_enum_array(godot::Array enum_array);
 
+  godot::Dictionary get_achievements_unlock_status();
+
  private:
   const godot::String group_of_level = "Level";
   const godot::String popup_scene_path = "uid://mbtl17frp3nx";
-  godot::Dictionary m_achievement_unlock_status;
+  godot::Dictionary m_achievements_unlock_status;
 
   const godot::String m_not_bethoven_signal_name = "not_beethoven";
   const godot::String m_restart_afk_signal_name = "restart_afk";

@@ -16,8 +16,9 @@ using namespace godot;
 
 void AchievementManager::_ready()
 {
-  m_achievement_unlock_status = SaveGame::initialising_achievements(this);
-  if (!m_achievement_unlock_status [BEETHOVEN])
+  m_achievements_unlock_status = SaveGame::initialising_achievements(this);
+
+  if (!m_achievements_unlock_status [BEETHOVEN])
   {
     check_beethoven();
   }
@@ -37,7 +38,7 @@ void AchievementManager::unlock_achievement(Achievements achievement_enum)
   achievement->call("achieved");
   create_popup(achievement);
   SaveGame::achievement_unlocked(this, achievement_enum);
-  m_achievement_unlock_status [achievement_enum] = true;
+  m_achievements_unlock_status [achievement_enum] = true;
 }
 
 void AchievementManager::create_popup(Ref<Resource> achievement)
@@ -51,32 +52,32 @@ void AchievementManager::create_popup(Ref<Resource> achievement)
 
 void AchievementManager::check_level_achievements()
 {
-  if (!m_achievement_unlock_status [SCORE_100])
+  if (!m_achievements_unlock_status [SCORE_100])
   {
     get_tree()->create_timer(40)->connect("timeout", Callable(this, "check_scoring_100"));
   }
-  if (!m_achievement_unlock_status [ADDICTED])
+  if (!m_achievements_unlock_status [ADDICTED])
   {
     check_addicted_attempt_100();
   }
-  if (!m_achievement_unlock_status [PIPE_HATER])
+  if (!m_achievements_unlock_status [PIPE_HATER])
   {
     get_tree()->create_timer(80)->connect("timeout", Callable(this, "check_pipe_hater"));
   }
-  if (!m_achievement_unlock_status [POWERUPS_5])
+  if (!m_achievements_unlock_status [POWERUPS_5])
   {
     check_powerups_5();
   }
-  if (!m_achievement_unlock_status [AFK])
+  if (!m_achievements_unlock_status [AFK])
   {
     check_afk();
   }
-  if (!m_achievement_unlock_status [SPEEDSTER])
+  if (!m_achievements_unlock_status [SPEEDSTER])
   {
     check_speedster();
   }
 
-  if (!m_achievement_unlock_status [BEETHOVEN] && has_user_signal(m_not_bethoven_signal_name))
+  if (!m_achievements_unlock_status [BEETHOVEN] && has_user_signal(m_not_bethoven_signal_name))
   {
     emit_signal(m_not_bethoven_signal_name);
   }
@@ -166,7 +167,7 @@ void AchievementManager::restart_afk(Timer* afk_timer) { afk_timer->start(); }
 void AchievementManager::check_speedster()
 {
   Bird* bird = Object::cast_to<Bird>(get_tree()->get_first_node_in_group("Bird"));
-  if (bird->get_final_speed() >= 1600)
+  if (bird && bird->get_final_speed() >= 1600)
   {
     unlock_achievement(SPEEDSTER);
     return;
@@ -186,6 +187,8 @@ void AchievementManager::_bind_methods()
                        &AchievementManager::set_achievements_enum_array);
   ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "achievements_enum_array"), "set_achievements_enum_array",
                "get_achievements_enum_array");
+
+  ClassDB::bind_method(D_METHOD("get_achievements_unlock_status"), &AchievementManager::get_achievements_unlock_status);
 
   ClassDB::bind_method(D_METHOD("unlock_achievement", "achievement_resource_path"),
                        &AchievementManager::unlock_achievement);
@@ -215,3 +218,5 @@ void AchievementManager::_bind_methods()
 
 Array AchievementManager::get_achievements_enum_array() { return achievements_enum_array; }
 void AchievementManager::set_achievements_enum_array(godot::Array enum_array) { achievements_enum_array = enum_array; }
+
+Dictionary AchievementManager::get_achievements_unlock_status() { return m_achievements_unlock_status; }
